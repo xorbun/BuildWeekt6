@@ -4,6 +4,7 @@ import com.sun.istack.Nullable;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name="mezzi")
@@ -27,6 +28,15 @@ public class Mezzo
     @Column(name="fine_attività")
     @Nullable
     private LocalDate fineattivita;
+    @ManyToOne
+    @JoinColumn(name="tratta_id")
+
+    /* @ManyToMany
+    @JoinTable(name="vidimati", joinColumns = @JoinColumn(name="mezzo_id"),
+            inverseJoinColumns = @JoinColumn(name="biglietto_id"))
+    private List<Biglietto>bigliettoList; */
+
+    private Tratta tratta;
     public Mezzo(){}
 
     public Mezzo(TipoMezzo tipomezzo, int capienza)
