@@ -3,6 +3,8 @@ package Entities;
 import com.sun.istack.Nullable;
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table
@@ -16,6 +18,10 @@ public class Biglietto
     private LocalDate timbro;
     @Column(name="scadenza_biglietto")
     private LocalDate scadenza;
+    @ManyToMany
+    @JoinTable(name="vidimati",joinColumns = @JoinColumn(name="biglietto_id"),
+            inverseJoinColumns = @JoinColumn(name="mezzo_id"))
+    private List<Mezzo>mezzoList=new ArrayList<>();
 
     public Biglietto(){}
 
