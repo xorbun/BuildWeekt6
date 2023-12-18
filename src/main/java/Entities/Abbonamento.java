@@ -16,6 +16,9 @@ public class Abbonamento
     private LocalDate scadenza;
     @Column(name="data_emissione")
     private LocalDate dataemissione;
+    @OneToOne
+    @JoinColumn(name="utente_id")
+    private Utente utente;
 
 
     public Abbonamento(){}

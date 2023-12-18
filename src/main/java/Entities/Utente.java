@@ -25,6 +25,7 @@ public class Utente
     @Nullable
     private LocalDate scadenza;
 
+
     public Utente(){}
 
     public Utente(String nome, String cognome, Long numerotessera,LocalDate emissionetessera)
