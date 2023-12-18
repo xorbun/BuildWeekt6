@@ -18,8 +18,10 @@ public class Biglietto
     private LocalDate timbro;
     @Column(name="scadenza_biglietto")
     private LocalDate scadenza;
-    @ManyToMany(mappedBy = "biglietti")
-    private List<Mezzo> mezzi = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(name="vidimati",joinColumns = @JoinColumn(name="biglietto_id"),
+            inverseJoinColumns = @JoinColumn(name="mezzo_id"))
+    private List<Mezzo>mezzoList=new ArrayList<>();
 
     public Biglietto(){}
 
