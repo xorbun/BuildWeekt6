@@ -1,6 +1,7 @@
 package Entities;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Random;
 
 @Entity
@@ -18,6 +19,8 @@ public class Tratta
     private double tempomedioperc;
     @Column(name = "tempo_effettivo_percorrenza")
     private double tempoeffperc;
+    @OneToMany(mappedBy = "tratta")
+    private List<Mezzo>mezzoList;
 
     public Tratta(){}
 
