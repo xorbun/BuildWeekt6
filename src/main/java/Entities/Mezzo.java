@@ -4,6 +4,7 @@ import com.sun.istack.Nullable;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -31,10 +32,14 @@ public class Mezzo
     @ManyToOne
     @JoinColumn(name="tratta_id")
 
-    /* @ManyToMany
-    @JoinTable(name="vidimati", joinColumns = @JoinColumn(name="mezzo_id"),
-            inverseJoinColumns = @JoinColumn(name="biglietto_id"))
-    private List<Biglietto>bigliettoList; */
+
+    @ManyToMany
+    @JoinTable(
+            name = "mezzo_biglietto",
+            joinColumns = @JoinColumn(name = "mezzo_id"),
+            inverseJoinColumns = @JoinColumn(name = "biglietto_id")
+    )
+    private List<Biglietto> biglietti = new ArrayList<>();
 
     private Tratta tratta;
     public Mezzo(){}
