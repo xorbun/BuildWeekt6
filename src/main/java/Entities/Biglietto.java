@@ -82,6 +82,8 @@ public class Biglietto
         this.mezzoList = mezzoList;
     }
 
+   
+
     @Override
     public String toString()
     {

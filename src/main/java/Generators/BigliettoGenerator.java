@@ -16,11 +16,11 @@ public class BigliettoGenerator
 
     EntityManager em = emf.createEntityManager();
     BigliettoDAO bd=new BigliettoDAO(em);
-    public void getbiglietti(Rivenditore negozio)
+    public void getbiglietti(Rivenditore venditore)
     {
         for (int i = 0; i < 20; i++)
         {
-            Biglietto ticket=negozio.stampaBiglietto(LocalDate.now());
+            Biglietto ticket=new Biglietto(LocalDate.now());
             bd.save(ticket);
 
         }
