@@ -24,7 +24,7 @@ public class Application
         Aldettaglio negozio = new Aldettaglio();
 
 
-        System.out.println(negozio.stampaBiglietto());
+        System.out.println(negozio.stampaBiglietto(LocalDate.now()));
 
 
 

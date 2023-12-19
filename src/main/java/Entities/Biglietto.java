@@ -19,7 +19,8 @@ public class Biglietto
     @Column(name="scadenza_biglietto")
     private LocalDate scadenza;
 
-    public boolean obliterato;
+    private boolean obliterato;
+    private LocalDate dataemissione;
     @ManyToMany
     @JoinTable(name="vidimati",joinColumns = @JoinColumn(name="biglietto_id"),
             inverseJoinColumns = @JoinColumn(name="mezzo_id"))
@@ -27,10 +28,11 @@ public class Biglietto
 
 
 
-    public Biglietto()
+    public Biglietto(LocalDate emissione)
     {
         this.scadenza=setScadenza();
         this.obliterato= false;
+        this.dataemissione = emissione;
     }
 
     public LocalDate getTimbro()
