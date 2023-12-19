@@ -69,6 +69,7 @@ public class Biglietto
     public String toString()
     {
         return "Biglietto{" +
+                "data_emissione" + dataemissione +
                 "data_timbro=" + dataTimbro +
                 ", scadenza=" + scadenza +
                 '}';
