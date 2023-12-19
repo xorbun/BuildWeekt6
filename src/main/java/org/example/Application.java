@@ -1,6 +1,7 @@
 package org.example;
 
 import Entities.*;
+import Generators.UserGenerator;
 import dao.AbbonamentoDAO;
 import dao.RivenditoreDAO;
 import dao.UtenteDAO;
@@ -22,20 +23,8 @@ public class Application
         AbbonamentoDAO ad = new AbbonamentoDAO(em);
         UtenteDAO ud = new UtenteDAO(em);
         RivenditoreDAO rd = new RivenditoreDAO(em);
-
-        Utente b=new Utente("Luca","Mastrangelo",2342343423324324L,LocalDate.now());
-//        ud.save(b);
-
-        Aldettaglio negozio = new Aldettaglio("Milano","Tabacchi");
-//        rd.save(negozio);
-
-      Utente unofromDB= ud.findById(4);
-
-        System.out.println(unofromDB);
-
-
-    Abbonamento abbonamento = negozio.stampaAbbonamento(unofromDB);
-    ad.save(abbonamento,unofromDB);
+        UserGenerator userGenerator = new UserGenerator();
+//        userGenerator.getUsers();
 
 
 
