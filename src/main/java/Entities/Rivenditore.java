@@ -1,6 +1,7 @@
 package Entities;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name="rivenditore")
@@ -51,8 +52,8 @@ public abstract class Rivenditore
     }
 
 
-    public Biglietto stampaBiglietto(){
-        return new Biglietto();
+    public Biglietto stampaBiglietto(LocalDate dataemissione ){
+        return new Biglietto(dataemissione);
     }
 
 
