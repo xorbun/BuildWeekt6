@@ -13,7 +13,7 @@ public class Biglietto
     @Id
     @GeneratedValue
     private long id;
-    @Column(name="obbliterato")
+    @Column(name="data_timbratura")
     @Nullable
     private LocalDate dataTimbro;
     @Column(name="scadenza_biglietto")
@@ -26,7 +26,7 @@ public class Biglietto
             inverseJoinColumns = @JoinColumn(name="mezzo_id"))
     private List<Mezzo>mezzoList=new ArrayList<>();
 
-
+    public Biglietto(){}
 
     public Biglietto(LocalDate emissione)
     {
@@ -67,6 +67,16 @@ public class Biglietto
             this.scadenza=null;
         }
         return scadenza;
+    }
+
+    public List<Mezzo> getMezzoList()
+    {
+        return mezzoList;
+    }
+
+    public void setMezzoList(List<Mezzo> mezzoList)
+    {
+        this.mezzoList = mezzoList;
     }
 
     @Override
