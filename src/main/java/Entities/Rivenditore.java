@@ -41,22 +41,6 @@ public abstract class Rivenditore
         return id;
     }
 
-    public Abbonamento stampaAbbonamento(Utente utente) {
-        long numeroTessera = utente.getNumerotessera();
-
-        Scanner userInput = new Scanner(System.in);
-        System.out.println("Che tipo di abbonamento vuoi creare? Premi 1 per settimanale o 2 per mensile");
-        int tipologia= userInput.nextInt();
-
-
-        if(tipologia == 1) {
-            return  new Abbonamento(numeroTessera,Tipologia.SETTIMANALE);
-        } else if (tipologia== 2) {
-            return new Abbonamento(numeroTessera,Tipologia.MENSILE);
-        } else {
-            return null;
-        }
-    }
 
     @Override
     public String toString()

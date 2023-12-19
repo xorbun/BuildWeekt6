@@ -1,6 +1,7 @@
 package org.example;
 
 import Entities.*;
+import Generators.AbbonamentiGenerator;
 import Generators.BigliettoGenerator;
 import Generators.UserGenerator;
 import dao.*;
@@ -26,6 +27,7 @@ public class Application
         MezzoDAO md=new MezzoDAO(em);
         UserGenerator userGenerator = new UserGenerator();
         BigliettoGenerator ticketgenerator= new BigliettoGenerator();
+        AbbonamentiGenerator abbonamentiGenerator = new AbbonamentiGenerator();
 
 
        //userGenerator.getUsers();
@@ -33,12 +35,15 @@ public class Application
         Distributore d1 = new Distributore("Roma", Stato.ATTIVO);
         //rd.save(d1);
 
+        Utente user = ud.findById(19);
+
         Distributore negozio1= (Distributore) rd.findById(49);
         //ticketgenerator.getbiglietti(49);
 
-        bd.bigliettiPerAnno(2023);
 
-
+        //abbonamentiGenerator.getAbbonamento(user,negozio1);
+       ad.abbonamentiPerAnno(2023);
+       bd.bigliettiPerAnno(2023);
 
 
     }

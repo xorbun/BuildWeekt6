@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table
+@NamedQuery(name = "cerca_abbonamenti_per_anno",query = "SELECT b FROM Abbonamento b WHERE YEAR(b.dataemissione) = :year")
 public class Abbonamento
 {
     @Id
@@ -27,9 +28,9 @@ public class Abbonamento
 
     public Abbonamento(){}
 
-    public Abbonamento(long numeroTessera,Tipologia tipologia)
+    public Abbonamento(Tipologia tipologia,Rivenditore rivenditore)
     {
-
+        this.rivenditore=rivenditore;
         this.tipologia = tipologia;
         this.dataemissione = LocalDate.now();
         this.scadenza = setScadenza();

@@ -67,9 +67,16 @@ public class BigliettoDAO {
     }
 
     public void bigliettiPerAnno(int year) {
+
         TypedQuery<Biglietto> ticket = em.createNamedQuery("cerca_biglietti_per_anno",Biglietto.class);
         ticket.setParameter("year",year);
-        ticket.getResultList().forEach(System.out::println);
+
+        if(ticket.getResultList().size() > 0) {
+            ticket.getResultList().forEach(System.out::println);
+        }else {
+            System.out.println("Nessun biglietto trovato per l'anno " + year);
+        }
+
     }
 
 }

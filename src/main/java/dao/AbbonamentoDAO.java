@@ -1,11 +1,13 @@
 package dao;
 
 import Entities.Abbonamento;
+import Entities.Biglietto;
 import Entities.Utente;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NamedQuery;
+import javax.persistence.TypedQuery;
 
 
 public class AbbonamentoDAO {
@@ -44,5 +46,17 @@ public class AbbonamentoDAO {
     }
 
 
+    public void abbonamentiPerAnno(int year) {
+
+
+            TypedQuery<Abbonamento> abbs = em.createNamedQuery("cerca_abbonamenti_per_anno",Abbonamento.class);
+            abbs.setParameter("year",year);
+                    if(abbs.getResultList().size() > 0) {
+                        abbs.getResultList().forEach(System.out::println);
+                    }else {
+                        System.out.println("Nessun abbonamento trovato per l'anno " + year);
+                    }
+
+    }
 
 }
