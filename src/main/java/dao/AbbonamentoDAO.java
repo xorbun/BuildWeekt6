@@ -20,8 +20,7 @@ public class AbbonamentoDAO {
         transaction.begin();
         em.persist(abbonamento);
         transaction.commit();
-
-        System.out.println("Abboamento " + abbonamento.getId() + " aggiunto correttamente!");
+        System.out.println("Abbonamento " + abbonamento.getId() + " aggiunto correttamente!");
     }
 
     public Abbonamento findById(long id) {
