@@ -41,4 +41,18 @@ public class UtenteDAO {
             System.out.println("Event with id:" + id + " not found!");
         }
     }
+
+    public void rinnovoTessera(Utente utente) {
+        if (utente != null) {
+            EntityTransaction transaction = em.getTransaction();
+            transaction.begin();
+            utente.rinnovaTessera();
+            em.merge(utente);
+            transaction.commit();
+            System.out.println("utente tessera rinnovato!");
+        }
+        else {
+            System.out.println("utente non trovato!");
+        }
+    }
 }
