@@ -52,6 +52,10 @@ public class Biglietto
         return scadenza;
     }
 
+    public long getId() {
+        return id;
+    }
+
     public LocalDate setScadenza()
     {
         if(dataTimbro!=null)
