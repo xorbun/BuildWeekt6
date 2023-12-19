@@ -21,6 +21,9 @@ public class Biglietto
 
     private boolean obliterato;
     private LocalDate dataemissione;
+    @ManyToOne
+    @JoinColumn(name="Rivenditore_id")
+    private Rivenditore rivenditore;
     @ManyToMany
     @JoinTable(name="vidimati",joinColumns = @JoinColumn(name="biglietto_id"),
             inverseJoinColumns = @JoinColumn(name="mezzo_id"))

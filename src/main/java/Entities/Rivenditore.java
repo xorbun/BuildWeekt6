@@ -16,12 +16,8 @@ public abstract class Rivenditore
     private long id;
     @Column(name="luogo_emissione")
     private String emissione;
-    @ManyToOne
-    @JoinColumn(name="abbonamento_id")
-    private Abbonamento abbonamento;
-    @ManyToOne
-    @JoinColumn(name="biglietto_id")
-    private Biglietto biglietto;
+
+
 
 
     public Rivenditore(){}

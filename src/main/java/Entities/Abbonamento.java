@@ -20,6 +20,9 @@ public class Abbonamento
     @OneToOne
     @JoinColumn(name="utente_id")
     private Utente utente;
+    @ManyToOne
+    @JoinColumn(name="Rivenditore_id")
+    private Rivenditore rivenditore;
 
 
     public Abbonamento(){}

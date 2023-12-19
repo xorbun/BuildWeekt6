@@ -1,6 +1,7 @@
 package Generators;
 
 import Entities.Biglietto;
+import Entities.Rivenditore;
 import dao.BigliettoDAO;
 
 import javax.persistence.EntityManager;
@@ -15,12 +16,13 @@ public class BigliettoGenerator
 
     EntityManager em = emf.createEntityManager();
     BigliettoDAO bd=new BigliettoDAO(em);
-    public void getbiglietti()
+    public void getbiglietti(Rivenditore negozio)
     {
         for (int i = 0; i < 20; i++)
         {
-            Biglietto ticket=new Biglietto(LocalDate.now());
+            Biglietto ticket=negozio.stampaBiglietto(LocalDate.now());
             bd.save(ticket);
+
         }
     }
 }
