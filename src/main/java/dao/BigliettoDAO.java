@@ -1,5 +1,6 @@
 package dao;
 
+import Entities.Abbonamento;
 import Entities.Biglietto;
 import Entities.Mezzo;
 import Entities.Rivenditore;
@@ -75,6 +76,19 @@ public class BigliettoDAO {
             ticket.getResultList().forEach(System.out::println);
         }else {
             System.out.println("Nessun biglietto trovato per l'anno " + year);
+        }
+
+    }
+
+    public void bigliettiPerNegozio(long id) {
+
+
+        TypedQuery<Biglietto> ticket = em.createNamedQuery("cerca_biglietti_per_negozio",Biglietto.class);
+        ticket.setParameter("id",id);
+        if(ticket.getResultList().size() > 0) {
+            ticket.getResultList().forEach(System.out::println);
+        }else {
+            System.out.println("Nessun biglietto venduto nel negozio " + id);
         }
 
     }

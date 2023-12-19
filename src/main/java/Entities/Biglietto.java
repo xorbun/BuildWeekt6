@@ -9,6 +9,7 @@ import java.util.List;
 @Entity
 @Table
 @NamedQuery(name = "cerca_biglietti_per_anno",query = "SELECT b FROM Biglietto b WHERE YEAR(b.dataemissione) = :year")
+@NamedQuery(name = "cerca_biglietti_per_negozio", query = "SELECT b FROM Biglietto b WHERE b.rivenditore.id= :id")
 public class Biglietto
 {
     @Id

@@ -46,5 +46,8 @@ public class Application
       // bd.bigliettiPerAnno(2023);
 
 
+        ad.abbonamentiPerNegozio(49);
+       bd.bigliettiPerNegozio(49);
+
     }
 }
