@@ -60,6 +60,10 @@ public class Abbonamento
         this.dataemissione = dataemissione;
     }
 
+    public long getId() {
+        return id;
+    }
+
     @Override
     public String toString()
     {

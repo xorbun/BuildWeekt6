@@ -38,6 +38,10 @@ public abstract class Rivenditore
         this.emissione = emissione;
     }
 
+    public long getId() {
+        return id;
+    }
+
     @Override
     public String toString()
     {

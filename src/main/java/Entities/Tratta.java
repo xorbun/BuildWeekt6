@@ -74,6 +74,10 @@ public class Tratta
         this.tempoeffperc = tempoeffperc;
     }
 
+    public long getId() {
+        return id;
+    }
+
     @Override
     public String toString()
     {

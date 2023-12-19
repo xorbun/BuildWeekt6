@@ -28,7 +28,11 @@ public class Utente
 
     public Utente(){}
 
-    public Utente(String nome, String cognome, Long numerotessera,LocalDate emissionetessera)
+    public long getId() {
+        return id;
+    }
+
+    public Utente(String nome, String cognome, Long numerotessera, LocalDate emissionetessera)
     {
         this.nome = nome;
         this.cognome = cognome;

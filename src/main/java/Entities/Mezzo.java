@@ -70,6 +70,10 @@ public class Mezzo
         return statomezzo;
     }
 
+    public long getId() {
+        return id;
+    }
+
     public void setStatomezzo(StatoMezzo statomezzo)
     {
         this.statomezzo = statomezzo;

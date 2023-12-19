@@ -31,6 +31,10 @@ public class Aldettaglio extends Rivenditore
         this.nome_negozio = nome_negozio;
     }
 
+    public long getId() {
+        return id;
+    }
+
     @Override
     public String toString()
     {
