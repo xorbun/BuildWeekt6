@@ -2,6 +2,7 @@ package Entities;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.chrono.IsoEra;
 
 @Entity
 @Table(name="rivenditore")
@@ -41,6 +42,14 @@ public abstract class Rivenditore
 
     public long getId() {
         return id;
+    }
+
+    public Abbonamento stampaAbbonamento(Utente utente) {
+        long numeroTessera = utente.getNumerotessera();
+
+        Abbonamento ab = new Abbonamento((Tipologia.MENSILE));
+        return ab;
+
     }
 
     @Override
