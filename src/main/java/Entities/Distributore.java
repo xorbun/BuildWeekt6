@@ -10,6 +10,8 @@ public class Distributore extends Rivenditore
     @Id
     @GeneratedValue
     private long id;
+
+    @Enumerated(EnumType.STRING)
     private Stato stato;
 
     public Distributore(){}

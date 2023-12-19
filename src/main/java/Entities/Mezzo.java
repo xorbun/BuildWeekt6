@@ -13,8 +13,12 @@ public class Mezzo
     @Id
     @GeneratedValue
     private long id;
+
+    @Enumerated(EnumType.STRING)
     private TipoMezzo tipomezzo;
     private int capienza;
+
+    @Enumerated(EnumType.STRING)
     private StatoMezzo statomezzo;
     @Nullable
     @Column(name="inizio_manutenzione")

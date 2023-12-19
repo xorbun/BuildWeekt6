@@ -26,6 +26,7 @@ public class Utente
     private LocalDate scadenza;
 
 
+
     public Utente(){}
 
     public long getId() {
