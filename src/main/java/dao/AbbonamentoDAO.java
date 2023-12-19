@@ -1,6 +1,7 @@
 package dao;
 
 import Entities.Abbonamento;
+import Entities.Utente;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -13,7 +14,8 @@ public class AbbonamentoDAO {
         this.em = em;
     }
 
-    public void save(Abbonamento abbonamento) {
+    public void save(Abbonamento abbonamento, Utente utente) {
+        abbonamento.setUtente(utente);
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
         em.persist(abbonamento);
@@ -34,10 +36,9 @@ public class AbbonamentoDAO {
             transaction.begin();
             em.remove(found);
             transaction.commit();
-
             System.out.println("Abbonamento " + found.getId() + " removed successfully!");
         } else {
-            System.out.println("Event with id:" + id + " not found!");
+            System.out.println("Abbonamento with id:" + id + " not found!");
         }
     }
 

@@ -11,6 +11,7 @@ public class Abbonamento
     @GeneratedValue
     private long id;
     @Column(name="tipologia_abbonamento")
+    @Enumerated(EnumType.STRING)
     private Tipologia tipologia;
 
     private LocalDate scadenza;
@@ -23,7 +24,7 @@ public class Abbonamento
 
     public Abbonamento(){}
 
-    public Abbonamento(Tipologia tipologia)
+    public Abbonamento(long numeroTessera,Tipologia tipologia)
     {
 
         this.tipologia = tipologia;
@@ -31,6 +32,9 @@ public class Abbonamento
         this.scadenza = setScadenza();
     }
 
+    public void setUtente(Utente utente) {
+        this.utente = utente;
+    }
 
     public Tipologia getTipologia()
     {
