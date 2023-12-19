@@ -33,6 +33,11 @@ public class Utente
         return id;
     }
 
+    public void rinnovaTessera () {
+        this.emissionetessera = LocalDate.now();
+        this.scadenza = setScadenza();
+    }
+
 
     public Utente(String nome, String cognome, Long numerotessera, LocalDate emissionetessera)
     {
@@ -79,7 +84,7 @@ public class Utente
 
     public void setEmissionetessera(LocalDate emissionetessera) {
         this.emissionetessera = emissionetessera;
-    }
+    };
 
     public LocalDate getScadenza()
     {
