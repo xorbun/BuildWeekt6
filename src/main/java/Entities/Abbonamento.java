@@ -23,12 +23,14 @@ public class Abbonamento
 
     public Abbonamento(){}
 
-    public Abbonamento(Tipologia tipologia, LocalDate scadenza, LocalDate dataemissione)
+    public Abbonamento(Tipologia tipologia)
     {
+
         this.tipologia = tipologia;
-        this.scadenza = scadenza;
-        this.dataemissione = dataemissione;
+        this.dataemissione = LocalDate.now();
+        this.scadenza = setScadenza();
     }
+
 
     public Tipologia getTipologia()
     {
@@ -45,9 +47,14 @@ public class Abbonamento
         return scadenza;
     }
 
-    public void setScadenza(LocalDate scadenza)
+    public LocalDate setScadenza()
     {
-        this.scadenza = scadenza;
+        if(this.tipologia.equals(Tipologia.SETTIMANALE)) {
+            this.scadenza = this.dataemissione.plusWeeks(1);
+        } else if (this.tipologia.equals(Tipologia.MENSILE)) {
+            this.scadenza = this.dataemissione.plusMonths(1);
+        }
+        return this.scadenza;
     }
 
     public LocalDate getDataemissione()

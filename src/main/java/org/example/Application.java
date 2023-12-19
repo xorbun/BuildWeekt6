@@ -15,16 +15,19 @@ public class Application
 
         Mezzo m=new Mezzo(TipoMezzo.BUS,34);
         System.out.println(m);
-       //Utente b=new Utente("Luca","Mastrangelo",2342343423324324L,LocalDate.now());
-       //System.out.println(b);
+       Utente b=new Utente("Luca","Mastrangelo",2342343423324324L,LocalDate.now());
+       System.out.println(b);
 
 
         Distributore uno = new Distributore();
 
         Aldettaglio negozio = new Aldettaglio();
+        System.out.println("Abbonamento: " + negozio.stampaAbbonamento(b));
 
 
-        System.out.println(negozio.stampaBiglietto(LocalDate.now()));
+
+
+//        System.out.println(negozio.stampaBiglietto(LocalDate.now()));
 
 
 

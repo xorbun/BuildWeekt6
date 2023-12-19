@@ -32,6 +32,7 @@ public class Utente
         return id;
     }
 
+
     public Utente(String nome, String cognome, Long numerotessera, LocalDate emissionetessera)
     {
         this.nome = nome;
