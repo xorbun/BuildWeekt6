@@ -59,4 +59,19 @@ public class AbbonamentoDAO {
 
     }
 
+    public void abbonamentiPerNegozio(long id) {
+
+
+        TypedQuery<Abbonamento> abbs = em.createNamedQuery("cerca_abbonamenti_per_negozio",Abbonamento.class);
+        abbs.setParameter("id",id);
+        if(abbs.getResultList().size() > 0) {
+            abbs.getResultList().forEach(System.out::println);
+        }else {
+            System.out.println("Nessun abbonamento venduto nel negozio " + id);
+        }
+
+    }
+    
+    
+
 }

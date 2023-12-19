@@ -42,8 +42,8 @@ public class Application
 
 
         //abbonamentiGenerator.getAbbonamento(user,negozio1);
-       ad.abbonamentiPerAnno(2023);
-       bd.bigliettiPerAnno(2023);
+      // ad.abbonamentiPerAnno(2023);
+      // bd.bigliettiPerAnno(2023);
 
 
     }
