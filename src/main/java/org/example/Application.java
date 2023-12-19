@@ -40,7 +40,7 @@ public class Application
         //Rivenditore rivfromdb=rd.findById(11);
         BigliettoGenerator tick1=new BigliettoGenerator();
         //Biglietto ticket=bd.findById(14);
-        tick1.getbiglietti();
+        tick1.getbiglietti(13);
         //bd.timbraticket(vetturafromdb,ticket);
 
 

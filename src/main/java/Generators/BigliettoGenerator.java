@@ -11,20 +11,27 @@ import javax.persistence.Persistence;
 import java.time.LocalDate;
 import java.util.Random;
 
-public class BigliettoGenerator
-{
+public class BigliettoGenerator {
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("Atac");
 
     EntityManager em = emf.createEntityManager();
-    BigliettoDAO bd=new BigliettoDAO(em);
-    RivenditoreDAO rd=new RivenditoreDAO(em);
-    Rivenditore rivenditorefromdb=rd.findById(12);
-    public void getbiglietti()
+    BigliettoDAO bd = new BigliettoDAO(em);
+    RivenditoreDAO rd = new RivenditoreDAO(em);
+
+    public void getbiglietti(long id)
     {
-        for (int i = 0; i < 5; i++)
+        Rivenditore rivenditorefromdb = rd.findById(id);
+        if (rivenditorefromdb != null)
         {
-            Biglietto ticket=new Biglietto(LocalDate.now(),rivenditorefromdb);
-            bd.save(ticket);
+            for (int i = 0; i < 2; i++)
+            {
+                Biglietto ticket = new Biglietto(LocalDate.now(), rivenditorefromdb);
+                bd.save(ticket);
+            }
+        } else
+        {
+            System.out.println("errore,rivenditore non trovato");
         }
+
     }
 }
