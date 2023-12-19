@@ -15,30 +15,34 @@ public class Biglietto
     private long id;
     @Column(name="obbliterato")
     @Nullable
-    private LocalDate timbro;
+    private LocalDate dataTimbro;
     @Column(name="scadenza_biglietto")
     private LocalDate scadenza;
+
+    public boolean obliterato;
     @ManyToMany
     @JoinTable(name="vidimati",joinColumns = @JoinColumn(name="biglietto_id"),
             inverseJoinColumns = @JoinColumn(name="mezzo_id"))
     private List<Mezzo>mezzoList=new ArrayList<>();
 
-    public Biglietto(){}
 
-    public Biglietto(LocalDate timbro)
+
+    public Biglietto()
     {
-        this.timbro = timbro;
         this.scadenza=setScadenza();
+        this.obliterato= false;
     }
 
     public LocalDate getTimbro()
     {
-        return timbro;
+        return dataTimbro;
     }
 
-    public void setTimbro(LocalDate timbro)
+    public void setTimbro()
     {
-        this.timbro = timbro;
+        this.dataTimbro = LocalDate.now();
+        this.obliterato = true;
+        setScadenza();
     }
 
     public LocalDate getScadenza()
@@ -48,9 +52,9 @@ public class Biglietto
 
     public LocalDate setScadenza()
     {
-        if(timbro!=null)
+        if(dataTimbro!=null)
         {
-            this.scadenza=timbro.minusDays(1);
+            this.scadenza=dataTimbro.plusDays(1);
         }
         else
         {
@@ -63,7 +67,7 @@ public class Biglietto
     public String toString()
     {
         return "Biglietto{" +
-                "timbro=" + timbro +
+                "data_timbro=" + dataTimbro +
                 ", scadenza=" + scadenza +
                 '}';
     }

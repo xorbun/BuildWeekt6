@@ -45,4 +45,11 @@ public abstract class Rivenditore
                 "emissione='" + emissione + '\'' +
                 '}';
     }
+
+
+    public Biglietto stampaBiglietto(){
+        return new Biglietto();
+    }
+    
+
 }
