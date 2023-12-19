@@ -54,6 +54,7 @@ public abstract class Rivenditore
     public Biglietto stampaBiglietto(){
         return new Biglietto();
     }
-    
+
+
 
 }
