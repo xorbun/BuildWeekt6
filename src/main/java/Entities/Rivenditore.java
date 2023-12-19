@@ -67,9 +67,10 @@ public abstract class Rivenditore
     }
 
 
-    public Biglietto stampaBiglietto(LocalDate dataemissione ){
+    /*public Biglietto stampaBiglietto(LocalDate dataemissione )
+    {
         return new Biglietto(dataemissione);
-    }
+    }*/
 
 
 

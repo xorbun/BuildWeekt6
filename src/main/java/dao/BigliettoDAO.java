@@ -2,6 +2,7 @@ package dao;
 
 import Entities.Biglietto;
 import Entities.Mezzo;
+import Entities.Rivenditore;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;

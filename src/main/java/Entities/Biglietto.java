@@ -31,11 +31,13 @@ public class Biglietto
 
     public Biglietto(){}
 
-    public Biglietto(LocalDate emissione)
+    public Biglietto(LocalDate emissione, Rivenditore rivenditore)
     {
         this.scadenza=setScadenza();
         this.obliterato= false;
         this.dataemissione = emissione;
+        this.rivenditore=rivenditore;
+
     }
 
     public LocalDate getTimbro()
@@ -82,7 +84,7 @@ public class Biglietto
         this.mezzoList = mezzoList;
     }
 
-   
+
 
     @Override
     public String toString()

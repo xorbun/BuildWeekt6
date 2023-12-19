@@ -32,16 +32,16 @@ public class Application
         //biglietto1fromdb.setTimbro();
         //Mezzo vettura1=new Mezzo(TipoMezzo.BUS,54);
 
-        Mezzo vetturafromdb= md.findById(13);
+        //Mezzo vetturafromdb= md.findById(13);
         //Distributore seller=new Distributore("Milano",Stato.ATTIVO);
         //rd.save(seller);
         //Aldettaglio seller1=new Aldettaglio("Milano","da gianni");
         //rd.save(seller1);
-        Rivenditore rivfromdb=rd.findById(11);
-        //BigliettoGenerator tick1=new BigliettoGenerator();
-        Biglietto ticket=bd.findById(14);
+        //Rivenditore rivfromdb=rd.findById(11);
+        BigliettoGenerator tick1=new BigliettoGenerator();
+        //Biglietto ticket=bd.findById(14);
         tick1.getbiglietti();
-        bd.timbraticket(vetturafromdb,ticket);
+        //bd.timbraticket(vetturafromdb,ticket);
 
 
 
