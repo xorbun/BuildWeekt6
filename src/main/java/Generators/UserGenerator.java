@@ -21,7 +21,7 @@ public class UserGenerator {
             for (int i = 0; i < 10; i++) {
                 Faker faker = new Faker();
                 Random rndm = new Random();
-                long numeroTess = rndm.nextLong();
+                long numeroTess = rndm.nextLong(1,99999999999L);
                 int randomYear = rndm.nextInt(2020, 2023);
                 int randomMonth = rndm.nextInt(1, 12);
                 int randomDay = rndm.nextInt(1, 30);

@@ -24,7 +24,7 @@ public class Application
         UtenteDAO ud = new UtenteDAO(em);
         RivenditoreDAO rd = new RivenditoreDAO(em);
         UserGenerator userGenerator = new UserGenerator();
-//        userGenerator.getUsers();
+        //userGenerator.getUsers();
 
 
 
