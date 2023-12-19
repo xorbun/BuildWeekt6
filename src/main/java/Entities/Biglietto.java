@@ -8,6 +8,7 @@ import java.util.List;
 
 @Entity
 @Table
+@NamedQuery(name = "cerca_biglietti_per_anno",query = "SELECT b FROM Biglietto b WHERE YEAR(b.dataemissione) = :year")
 public class Biglietto
 {
     @Id

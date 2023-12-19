@@ -25,25 +25,20 @@ public class Application
         BigliettoDAO bd=new BigliettoDAO(em);
         MezzoDAO md=new MezzoDAO(em);
         UserGenerator userGenerator = new UserGenerator();
+        BigliettoGenerator ticketgenerator= new BigliettoGenerator();
 
 
-//        userGenerator.getUsers();
+       //userGenerator.getUsers();
 
         Distributore d1 = new Distributore("Roma", Stato.ATTIVO);
-//        rd.save(d1);
+        //rd.save(d1);
 
-        Rivenditore d1Fromdb = rd.findById(83);
-        BigliettoGenerator bg = new BigliettoGenerator();
+        Distributore negozio1= (Distributore) rd.findById(49);
+        //ticketgenerator.getbiglietti(49);
 
-//        Mezzo bus1 = new Mezzo(TipoMezzo.BUS, 52);
-//        md.save(bus1);
+        bd.bigliettiPerAnno(2023);
 
-        Mezzo bus1FromBd = md.findById(86);
-        Biglietto biglietto1FromDb = bd.findById(84);
-        bd.timbraticket(bus1FromBd, biglietto1FromDb);
 
-        Utente user = ud.findById(63);
-        ud.rinnovoTessera(user);
 
 
     }

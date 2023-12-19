@@ -6,6 +6,7 @@ import Entities.Rivenditore;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 
 public class BigliettoDAO {
@@ -63,6 +64,12 @@ public class BigliettoDAO {
         {
             System.out.println("biglietto non valido");
         }
+    }
+
+    public void bigliettiPerAnno(int year) {
+        TypedQuery<Biglietto> ticket = em.createNamedQuery("cerca_biglietti_per_anno",Biglietto.class);
+        ticket.setParameter("year",year);
+        ticket.getResultList().forEach(System.out::println);
     }
 
 }
