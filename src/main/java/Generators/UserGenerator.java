@@ -20,7 +20,7 @@ public class UserGenerator {
         UtenteDAO ud = new UtenteDAO(em);
         public void getUsers() {
             for (int i = 0; i < 10; i++) {
-                Faker faker = new Faker(Locale.ITALY);
+                Faker faker = new Faker(Locale.ITALIAN);
                 Random rndm = new Random();
                 long numeroTess = rndm.nextLong(1,99999999999L);
                 int randomYear = rndm.nextInt(2020, 2023);

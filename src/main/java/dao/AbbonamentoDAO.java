@@ -82,7 +82,7 @@ public class AbbonamentoDAO {
         EntityTransaction transaction=em.getTransaction();
         if(a.getScadenza().isBefore(LocalDate.now()))
         {
-            System.out.println("abbonamento scaduto in data "+ a.getScadenza()+ "vuoi rinnovare?1)si, 2)no");
+            System.out.println("Abbonamento scaduto in data "+ a.getScadenza()+ "vuoi rinnovare?1)si, 2)no");
             Scanner input=new Scanner(System.in);
             int menu;
             menu=input.nextInt();
