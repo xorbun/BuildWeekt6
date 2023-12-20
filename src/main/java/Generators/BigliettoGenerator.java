@@ -30,7 +30,7 @@ public class BigliettoGenerator {
             }
         } else
         {
-            System.out.println("errore,rivenditore non trovato");
+            System.out.println("Errore, rivenditore con id: " + id + " non trovato");
         }
 
     }

@@ -4,6 +4,7 @@ import Entities.*;
 import Generators.AbbonamentiGenerator;
 import Generators.BigliettoGenerator;
 import Generators.UserGenerator;
+import com.github.javafaker.Faker;
 import dao.*;
 
 import javax.persistence.EntityManager;
@@ -30,9 +31,10 @@ public class Application
         AbbonamentiGenerator abbonamentiGenerator = new AbbonamentiGenerator();
 
 
+
        //userGenerator.getUsers();
 
-        Distributore d1 = new Distributore("Roma", Stato.ATTIVO);
+//        Distributore d1 = new Distributore("Roma", Stato.ATTIVO);
         //rd.save(d1);
 
        // Utente user = ud.findById(2);
@@ -45,11 +47,16 @@ public class Application
         //abbonamentiGenerator.getAbbonamento(user,negozio1);
       // ad.abbonamentiPerAnno(2023);
       // bd.bigliettiPerAnno(2023);
-        Abbonamento abb=ad.findById(81);
-        ad.controlloabbonamento(abb);
+//        Abbonamento abb=ad.findById(81);
+//        ad.controlloabbonamento(abb);
+//
+//        ad.abbonamentiPerNegozio(49);
+//       bd.bigliettiPerNegozio(49);
 
-        ad.abbonamentiPerNegozio(49);
-       bd.bigliettiPerNegozio(49);
+
+
+
+
 
     }
 }

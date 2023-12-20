@@ -22,7 +22,7 @@ public class AbbonamentiGenerator {
     public void getAbbonamento(Utente user,Rivenditore rivenditore)
     {
 
-        if (user != null)
+        if (user != null && rivenditore != null)
         {
             Scanner userInput = new Scanner(System.in);
             System.out.println("Che tipo di abbonamento vuoi creare? Premi 1 per settimanale o 2 per mensile");
@@ -41,7 +41,12 @@ public class AbbonamentiGenerator {
             }
         } else
         {
-            System.out.println("errore,rivenditore non trovato");
+            if(rivenditore == null) {
+                System.out.println("RIvenditore non trovato.");
+            } else {
+                System.out.println("Utente non trovato.");
+
+            }
         }
 
     }

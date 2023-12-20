@@ -7,7 +7,6 @@ import java.time.LocalDate;
 @Table
 @NamedQuery(name = "cerca_abbonamenti_per_anno",query = "SELECT b FROM Abbonamento b WHERE YEAR(b.dataemissione) = :year")
 @NamedQuery(name = "cerca_abbonamenti_per_negozio", query = "SELECT b FROM Abbonamento b WHERE b.rivenditore.id= :id")
-//@NamedQuery(name="verifica_validità",query="SELECT a FROM Abbonamento a WHERE a.scadenza < :scadenza")
 public class Abbonamento
 {
     @Id

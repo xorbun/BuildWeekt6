@@ -20,7 +20,7 @@ public class MezzoDAO {
         em.persist(mezzo);
         transaction.commit();
 
-        System.out.println("Abboamento " + mezzo.getId() + " aggiunto correttamente!");
+        System.out.println("Mezzo con id: " + mezzo.getId() + " aggiunto correttamente!");
     }
 
     public Mezzo findById(long id) {
@@ -36,9 +36,9 @@ public class MezzoDAO {
             em.remove(found);
             transaction.commit();
 
-            System.out.println("Abbonamento " + found.getId() + " removed successfully!");
+            System.out.println("Mezzo con id: " + found.getId() + " rimosso!");
         } else {
-            System.out.println("Event with id:" + id + " not found!");
+            System.out.println("Mezzo con id: " + id + " non trovato!");
         }
     }
 

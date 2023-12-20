@@ -36,9 +36,9 @@ public class UtenteDAO {
             em.remove(found);
             transaction.commit();
 
-            System.out.println("Utente " + found.getId() + " removed successfully!");
+            System.out.println("Utente " + found.getId() + " rimosso!");
         } else {
-            System.out.println("Event with id:" + id + " not found!");
+            System.out.println("Utente con id: " + id + " non trovato");
         }
     }
 

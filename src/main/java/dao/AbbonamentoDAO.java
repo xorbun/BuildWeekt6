@@ -44,9 +44,9 @@ public class AbbonamentoDAO {
             transaction.begin();
             em.remove(found);
             transaction.commit();
-            System.out.println("Abbonamento " + found.getId() + " removed successfully!");
+            System.out.println("Abbonamento " + found.getId() + " rimosso!");
         } else {
-            System.out.println("Abbonamento with id:" + id + " not found!");
+            System.out.println("Abbonamento with id:" + id + " non trovato!");
         }
     }
 
@@ -79,6 +79,7 @@ public class AbbonamentoDAO {
     }
     public void controlloabbonamento(Abbonamento a)
     {
+        EntityTransaction transaction=em.getTransaction();
         if(a.getScadenza().isBefore(LocalDate.now()))
         {
             System.out.println("abbonamento scaduto in data "+ a.getScadenza()+ "vuoi rinnovare?1)si, 2)no");
@@ -96,7 +97,7 @@ public class AbbonamentoDAO {
                     {
                         case 1:
                         {
-                            EntityTransaction transaction=em.getTransaction();
+
                             transaction.begin();
                             a.setDataemissione(LocalDate.now());
                             a.setTipologia(Tipologia.SETTIMANALE);
@@ -108,7 +109,6 @@ public class AbbonamentoDAO {
                         }
                         case 2:
                         {
-                            EntityTransaction transaction= em.getTransaction();
                             transaction.begin();
                             a.setDataemissione(LocalDate.now());
                             a.setTipologia(Tipologia.MENSILE);

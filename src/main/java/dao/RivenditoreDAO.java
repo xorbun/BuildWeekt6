@@ -36,9 +36,9 @@ public class RivenditoreDAO {
             em.remove(found);
             transaction.commit();
 
-            System.out.println("Rivenditore " + found.getId() + " removed successfully!");
+            System.out.println("Rivenditore " + found.getId() + " rimosso!");
         } else {
-            System.out.println("Event with id:" + id + " not found!");
+            System.out.println("Rivenditore con id:" + id + " non trovato.");
         }
     }
 }

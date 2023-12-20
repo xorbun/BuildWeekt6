@@ -21,7 +21,7 @@ public class TrattaDAO
         transaction.begin();
         em.persist(tratta);
         transaction.commit();
-        System.out.println("Tratta " + tratta.getId() + " aggiunto correttamente!");
+        System.out.println("Tratta con id: " + tratta.getId() + " aggiunta correttamente!");
     }
 
     public Tratta findById(long id)
@@ -38,11 +38,11 @@ public class TrattaDAO
             transaction.begin();
             em.remove(found);
             transaction.commit();
-            System.out.println("Tratta " + found.getId() + " removed successfully!");
+            System.out.println("Tratta con id: " + found.getId() + " rimossa!");
         }
         else
         {
-            System.out.println("Event with id:" + id + " not found!");
+            System.out.println("Tratta con id :" + id + " non trovata!");
         }
     }
 }
