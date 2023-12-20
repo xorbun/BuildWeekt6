@@ -35,16 +35,18 @@ public class Application
         Distributore d1 = new Distributore("Roma", Stato.ATTIVO);
         //rd.save(d1);
 
-        Utente user = ud.findById(19);
+       // Utente user = ud.findById(2);
 
-        Distributore negozio1= (Distributore) rd.findById(49);
+        //Distributore negozio1= (Distributore) rd.findById(11);
+
         //ticketgenerator.getbiglietti(49);
 
 
         //abbonamentiGenerator.getAbbonamento(user,negozio1);
       // ad.abbonamentiPerAnno(2023);
       // bd.bigliettiPerAnno(2023);
-
+        Abbonamento abb=ad.findById(81);
+        ad.controlloabbonamento(abb);
 
     }
 }
