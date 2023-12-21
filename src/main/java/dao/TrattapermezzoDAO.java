@@ -38,27 +38,28 @@ public class TrattapermezzoDAO
     {
         Trattapermezzo found = this.findById(id);
 
-        if (found != null) {
+        if (found != null)
+        {
             EntityTransaction transaction = em.getTransaction();
             transaction.begin();
             em.remove(found);
             transaction.commit();
             System.out.println("percorrenza " + found.getId() + " rimosso!");
-        } else {
+        } else
+        {
             System.out.println("La percorrenza with id:" + id + " non trovato!");
         }
     }
     public void counterpercorrenze(Mezzo m, Tratta t)
     {
-
+       if(m!=null && t!=null)
+       {
         MezzoDAO md=new MezzoDAO(em);
         TrattaDAO td=new TrattaDAO(em);
-        Mezzo found1=md.findById(m.getId());
-        Tratta found2=td.findById(t.getId());
+        Mezzo found1=md.findById(mid);
+        Tratta found2=td.findById(tid);
         if(found1!= null && found2!=null)
         {
-            long tid=t.getId();
-            long mid=m.getId();
             TypedQuery<Trattapermezzo> trattapermezzoTypedQuery = em.createNamedQuery("conta_percorrenze", Trattapermezzo.class);
             trattapermezzoTypedQuery.setParameter("tid", tid);
             trattapermezzoTypedQuery.setParameter("mid", mid);
@@ -66,13 +67,13 @@ public class TrattapermezzoDAO
         }
         else
         {
-            if(found2==null)
+            if(found1==null)
             {
-                System.out.println("nessuna tratta trovata");
+                System.out.println("nessun mezzo trovato");
             }
             else
             {
-                System.out.println("nessun mezzo trovato");
+                System.out.println("nessuna tratta trovata");
             }
         }
     }

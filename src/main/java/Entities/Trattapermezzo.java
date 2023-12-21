@@ -14,11 +14,9 @@ public class Trattapermezzo
     private long id;
     @ManyToOne
     @JoinColumn(name="tratta_id")
-    @Nullable
     private Tratta tratta;
     @ManyToOne
     @JoinColumn(name="mezzo_id")
-    @Nullable
     private Mezzo mezzo;
 
     public Trattapermezzo(){}

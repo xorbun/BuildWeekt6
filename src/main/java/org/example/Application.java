@@ -35,13 +35,14 @@ public class Application
         BigliettoGenerator ticketgenerator= new BigliettoGenerator();
 
         //****************************************COSTRUTTORI****************************************
-        Tratta tdfromdb=td.findById(52);
-        Mezzo busfromdb = md.findById(2);
+        Tratta tdfromdb=td.findById(32);
+        Mezzo busfromdb = md.findById(5);
         //Trattapermezzo trattapm1=new Trattapermezzo(tdfromdb,busfromdb);
         //ttd.percorritratta(trattapm1);
-
+        Biglietto bigliettofromdb=bd.findById(18);
        //****************************************METODI****************************************
-        ttd.counterpercorrenze(busfromdb,tdfromdb);
+       // ttd.counterpercorrenze(busfromdb,tdfromdb);
+        bd.timbraticket(busfromdb,bigliettofromdb);
         //userGenerator.getUsers();
 
         //Aldettaglio negozio1 = new Aldettaglio("Roma","Tabacchi");

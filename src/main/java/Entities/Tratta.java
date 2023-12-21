@@ -74,7 +74,8 @@ public class Tratta
         this.tempoeffperc = tempoeffperc;
     }
 
-    public long getId() {
+    public long getId()
+    {
         return id;
     }
 
