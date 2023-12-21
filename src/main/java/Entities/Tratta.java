@@ -19,8 +19,7 @@ public class Tratta
     private double tempomedioperc;
     @Column(name = "tempo_effettivo_percorrenza")
     private double tempoeffperc;
-    @ManyToMany
-    @JoinTable(name="tratta_per_percorso",joinColumns=@JoinColumn(name="tratta_id"),inverseJoinColumns = @JoinColumn(name="mezzo_id"))
+    @OneToMany(mappedBy = "tratta")
     private List<Mezzo>mezzoList;
 
     public Tratta(){}
@@ -77,14 +76,6 @@ public class Tratta
 
     public long getId() {
         return id;
-    }
-
-    public List<Mezzo> getMezzoList() {
-        return mezzoList;
-    }
-
-    public void setMezzoList(List<Mezzo> mezzoList) {
-        this.mezzoList = mezzoList;
     }
 
     @Override
