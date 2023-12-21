@@ -12,6 +12,7 @@ import java.util.List;
 
 import java.time.LocalDate;
 import java.util.Random;
+import java.util.StringTokenizer;
 
 public class UtenteDAO {
 
@@ -99,9 +100,40 @@ public class UtenteDAO {
             EntityTransaction transaction = em.getTransaction();
             transaction.begin();
             Random rndm = new Random();
-            long numeroTess = rndm.nextLong(1, 99999999999L);
+//            long numeroTess = rndm.nextLong(1, 99999999999L);
+
+            String cognome = user.getCognome();
+            String nome = user.getNome();
+            LocalDate date = user.getEmissionetessera();
+            int randomDay = date.getDayOfMonth();
+            int randomYear = date.getYear();
+            int randomMonth = date.getDayOfMonth();
+
+            String numerotessera = null;
+
+            String allData = nome.replaceAll("[^a-zA-Z]", "").toUpperCase() + randomDay +
+                    cognome.replaceAll("[^a-zA-Z]", "").toUpperCase() + randomYear + randomMonth;
+            do {
+                StringBuilder numTessera = new StringBuilder();
+
+                numTessera.append(cognome.toUpperCase().charAt(0));
+
+                for(int j = 0; j < 15; j++) {
+                    if(j < 3 && j > 0) {
+                        int num = rndm.nextInt(1, cognome.length() - 1);
+                        numTessera.append(cognome.replaceAll("[^a-zA-Z]", "").toUpperCase().charAt(num));
+                    } else {
+                        int rest = rndm.nextInt(1, allData.length() - 1);
+                        numTessera.append(allData.charAt(rest));
+                    }
+                }
+                numerotessera = String.valueOf(numTessera);
+
+            } while (findByNumTessera(numerotessera) != null);
+
+
             user.setEmissionetessera(LocalDate.now());
-            user.setNumerotessera(numeroTess);
+            user.setNumerotessera(numerotessera);
             user.setScadenza();
             em.merge(user);
             transaction.commit();

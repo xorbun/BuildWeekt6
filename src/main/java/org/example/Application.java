@@ -62,10 +62,11 @@ public class Application {
                 // RICERCA BIGLIETTI TIMBRATI PER ANNO:
                 // md.cercaBigliettiTimbratiPerAnno(busfromdb,2023);
 
-                Utente user1 = new Utente("bob", "marley", "124", LocalDate.now());
-                ud.save(user1);
+//                Utente user1 = new Utente("bob", "marley", "124", LocalDate.now());
+//                ud.save(user1);
                 UserGenerator user = new UserGenerator();
-                user.getUsers();
-
+//                user.getUsers();
+//                ud.findById(5);
+                ud.generaTessera(ud.findById(5));
         }
 }
