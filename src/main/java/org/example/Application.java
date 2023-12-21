@@ -45,6 +45,8 @@ public class Application
 
         //ud.rinnovoTessera(utente1fromdb);
 
+        //ud.generaTessera(utente1fromdb);
+
 
 
     

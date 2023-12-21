@@ -6,6 +6,7 @@ import Entities.Utente;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import java.time.LocalDate;
+import java.util.Random;
 
 public class UtenteDAO {
 
@@ -61,6 +62,31 @@ public class UtenteDAO {
             else {
                 System.out.println("L'utente non ha alcuna tessera.");
             }
+        }
+    }
+
+
+    public void generaTessera(Utente user) {
+
+        if(user != null && user.getNumerotessera()== null) {
+            EntityTransaction transaction = em.getTransaction();
+            transaction.begin();
+            Random rndm = new Random();
+            long numeroTess = rndm.nextLong(1,99999999999L);
+            user.setEmissionetessera(LocalDate.now());
+            user.setNumerotessera(numeroTess);
+            user.setScadenza();
+            em.merge(user);
+            transaction.commit();
+            System.out.println("Tessera creata per l'utente: " + user.getNome()+ " " + user.getCognome()+", "
+                    + "Tessera numero: " + user.getNumerotessera() + " Data di scadenza: " + user.getScadenza());
+        }
+        else {
+                if(user == null) {
+                    System.out.println("Utente non trovato.");
+                }else {
+                    System.out.println("L'utente con id: " + user.getId()+ " ha gia una tessera registrata.");
+        }
         }
     }
 }
