@@ -75,68 +75,68 @@ public class AbbonamentoDAO {
 
     }
 
-    public void controlloabbonamento(Abbonamento a)
-    {
-        EntityTransaction transaction=em.getTransaction();
-        if(a.getScadenza().isBefore(LocalDate.now()))
-        {
-            System.out.println("Abbonamento scaduto in data "+ a.getScadenza()+ "vuoi rinnovare?1)si, 2)no");
-            Scanner input=new Scanner(System.in);
-            int menu;
-            menu = input.nextInt();
-
-            try {
-                switch (menu) {
-                        case 1: {
-                            System.out.println("Selezionare 1)abbonamento settimanale 2)abbonamento mensile");
-                            int menu1;
-                            menu1 = input.nextInt();
-                            switch (menu1) {
-                                case 1: {
-                                    transaction.begin();
-                                    a.setDataemissione(LocalDate.now());
-                                    a.setTipologia(Tipologia.SETTIMANALE);
-                                    a.setScadenza();
-                                    em.merge(a);
-                                    transaction.commit();
-                                    System.out.println("abbonamento rinnovato fino al " + a.getScadenza());
-                                    break;
-                                }
-                                case 2: {
-                                    transaction.begin();
-                                    a.setDataemissione(LocalDate.now());
-                                    a.setTipologia(Tipologia.MENSILE);
-                                    a.setScadenza();
-                                    em.merge(a);
-                                    transaction.commit();
-                                    System.out.println("abbonamento rinnovato fino al " + a.getScadenza());
-                                    break;
-                                }
-                                default: {
-                                    System.out.println("comando non riconosciuto");
-                                }
-                            }
-                            break;
-                        }
-                        case 2: {
-                            System.out.println("abbonamento non rinnovato :(");
-                            break;
-                        }
-                        default: {
-                            System.out.println("comando non riconosciuto");
-                        }
-                    }
-            } catch (InputMismatchException e) {
-                System.err.println("input invalid! " + e);
-            } finally {
-                input.close();
-            }
-        }
-        else
-        {
-            System.out.println("abbonamento valido fino al "+ a.getScadenza());
-        }
-    }
+//    public void controlloabbonamento(Abbonamento a)
+//    {
+//        EntityTransaction transaction=em.getTransaction();
+//        if(a.getScadenza().isBefore(LocalDate.now()))
+//        {
+//            System.out.println("Abbonamento scaduto in data "+ a.getScadenza()+ "vuoi rinnovare?1)si, 2)no");
+//            Scanner input=new Scanner(System.in);
+//            int menu;
+//            menu = input.nextInt();
+//
+//            try {
+//                switch (menu) {
+//                        case 1: {
+//                            System.out.println("Selezionare 1)abbonamento settimanale 2)abbonamento mensile");
+//                            int menu1;
+//                            menu1 = input.nextInt();
+//                            switch (menu1) {
+//                                case 1: {
+//                                    transaction.begin();
+//                                    a.setDataemissione(LocalDate.now());
+//                                    a.setTipologia(Tipologia.SETTIMANALE);
+//                                    a.setScadenza();
+//                                    em.merge(a);
+//                                    transaction.commit();
+//                                    System.out.println("abbonamento rinnovato fino al " + a.getScadenza());
+//                                    break;
+//                                }
+//                                case 2: {
+//                                    transaction.begin();
+//                                    a.setDataemissione(LocalDate.now());
+//                                    a.setTipologia(Tipologia.MENSILE);
+//                                    a.setScadenza();
+//                                    em.merge(a);
+//                                    transaction.commit();
+//                                    System.out.println("abbonamento rinnovato fino al " + a.getScadenza());
+//                                    break;
+//                                }
+//                                default: {
+//                                    System.out.println("comando non riconosciuto");
+//                                }
+//                            }
+//                            break;
+//                        }
+//                        case 2: {
+//                            System.out.println("abbonamento non rinnovato :(");
+//                            break;
+//                        }
+//                        default: {
+//                            System.out.println("comando non riconosciuto");
+//                        }
+//                    }
+//            } catch (InputMismatchException e) {
+//                System.err.println("input invalid! " + e);
+//            } finally {
+//                input.close();
+//            }
+//        }
+//        else
+//        {
+//            System.out.println("abbonamento valido fino al "+ a.getScadenza());
+//        }
+//    }
 
     // permette di aggiungere o aggiornare abbonamento
     public void aggiornaAbbonamento(Utente u, Rivenditore rivenditore) {
@@ -236,8 +236,5 @@ public class AbbonamentoDAO {
         } finally {
             scanner.close();
         }
-
     }
-    
-
 }
