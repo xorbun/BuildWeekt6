@@ -54,6 +54,10 @@ public class Biglietto
         setScadenza();
     }
 
+    public boolean isObliterato() {
+        return obliterato;
+    }
+
     public LocalDate getScadenza()
     {
         return scadenza;
@@ -89,11 +93,11 @@ public class Biglietto
 
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "Biglietto{" +
-                "data_emissione" + dataemissione +
-                "data_timbro=" + dataTimbro +
+                "id=" + id + ", "+
+                "data_emissione=" + dataemissione +
+                ", data_timbro=" + dataTimbro +
                 ", scadenza=" + scadenza +
                 '}';
     }

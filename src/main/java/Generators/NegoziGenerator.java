@@ -4,7 +4,6 @@ import Entities.Aldettaglio;
 import Entities.Distributore;
 import Entities.Stato;
 import com.github.javafaker.Faker;
-import dao.BigliettoDAO;
 import dao.RivenditoreDAO;
 
 import javax.persistence.EntityManager;
@@ -12,7 +11,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.Random;
 
-public class NegozziGenerator {
+public class NegoziGenerator {
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("Atac");
 
     EntityManager em = emf.createEntityManager();
@@ -21,7 +20,7 @@ public class NegozziGenerator {
     // generates 10 negozzi randomizzati
     // aldetaglio -> negozzio normale(rivenditore)
     // distribuitore -> generata(macchina o non rivenditore)
-    public void negozzio() {
+    public void negozio() {
         Faker faker = new Faker();
 
         for(int i = 0; i < 10; i++) {
