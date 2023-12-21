@@ -27,17 +27,29 @@ public class Application
         RivenditoreDAO rd = new RivenditoreDAO(em);
         BigliettoDAO bd=new BigliettoDAO(em);
         MezzoDAO md=new MezzoDAO(em);
+        TrattaDAO td=new TrattaDAO(em);
         UserGenerator userGenerator = new UserGenerator();
-        BigliettoGenerator ticketgenerator= new BigliettoGenerator();
-        AbbonamentiGenerator abbonamentiGenerator = new AbbonamentiGenerator();
-
-
-
-       //userGenerator.getUsers();
+        userGenerator.getUsers();
 
         // genera 10 negozzi randomizzati
         NegozziGenerator genNegozzi = new NegozziGenerator();
-//        genNegozzi.negozzio();
+        genNegozzi.negozzio();
+
+        BigliettoGenerator ticketgenerator= new BigliettoGenerator();
+        ticketgenerator.getbiglietti(14);
+        AbbonamentiGenerator abbonamentiGenerator = new AbbonamentiGenerator();
+        Tratta tratta1=new Tratta("Roma","Napoli",2.30);
+        //Tratta foundfromdb=td.findById(25);
+        td.save(tratta1);
+        Mezzo mezzo1=new Mezzo(TipoMezzo.BUS,46);
+        //Mezzo mezzofromdb=md.findById(26);
+        //Biglietto bigliettofromdb=bd.findById(21);
+        md.save(mezzo1);
+        //md.percorritratta(mezzofromdb,foundfromdb);
+        //bd.timbraticket(mezzofromdb,bigliettofromdb);
+       //userGenerator.getUsers();
+
+
 
     }
 

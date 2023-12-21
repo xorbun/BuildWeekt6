@@ -45,4 +45,8 @@ public class TrattaDAO
             System.out.println("Tratta con id :" + id + " non trovata!");
         }
     }
+    public void controllatratta(long id)
+    {
+        Tratta found=this.findById(id);
+    }
 }

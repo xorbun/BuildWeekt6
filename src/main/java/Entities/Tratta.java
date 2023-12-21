@@ -19,12 +19,13 @@ public class Tratta
     private double tempomedioperc;
     @Column(name = "tempo_effettivo_percorrenza")
     private double tempoeffperc;
-    @OneToMany(mappedBy = "tratta")
+    @ManyToMany
+    @JoinTable(name="tratta_per_percorso",joinColumns=@JoinColumn(name="tratta_id"),inverseJoinColumns = @JoinColumn(name="mezzo_id"))
     private List<Mezzo>mezzoList;
 
     public Tratta(){}
 
-    public Tratta(String luogopartenza, String capolinea, double tempomedioperc, double tempoeffperc)
+    public Tratta(String luogopartenza, String capolinea, double tempoeffperc)
     {
         this.luogopartenza = luogopartenza;
         this.capolinea = capolinea;
@@ -76,6 +77,14 @@ public class Tratta
 
     public long getId() {
         return id;
+    }
+
+    public List<Mezzo> getMezzoList() {
+        return mezzoList;
+    }
+
+    public void setMezzoList(List<Mezzo> mezzoList) {
+        this.mezzoList = mezzoList;
     }
 
     @Override

@@ -39,6 +39,9 @@ public class Mezzo
    @JoinTable(name="vidimati", joinColumns = @JoinColumn(name="mezzo_id"),
            inverseJoinColumns = @JoinColumn(name="biglietto_id"))
    private List<Biglietto>bigliettoList;
+    @ManyToMany
+    @JoinTable(name="tratta_per_percorso",joinColumns=@JoinColumn(name="mezzo_id"),inverseJoinColumns = @JoinColumn(name="tratta_id"))
+    private List<Tratta>trattaList;
     public Mezzo(){}
 
     public Mezzo(TipoMezzo tipomezzo, int capienza)
@@ -129,6 +132,10 @@ public class Mezzo
     public void setFineattivita(LocalDate fineattivita)
     {
         this.fineattivita = fineattivita;
+    }
+    public void setTratta(Tratta tratta)
+    {
+        this.tratta=tratta;
     }
 
 

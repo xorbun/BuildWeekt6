@@ -2,9 +2,10 @@ package dao;
 
 import Entities.Abbonamento;
 import Entities.Mezzo;
-
+import Entities.Tratta;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import java.util.ArrayList;
 
 public class MezzoDAO {
 
@@ -40,6 +41,17 @@ public class MezzoDAO {
         } else {
             System.out.println("Mezzo con id: " + id + " non trovato!");
         }
+    }
+    public void percorritratta(Mezzo a,Tratta b)
+    {
+        EntityTransaction transaction= em.getTransaction();
+        transaction.begin();
+        a.setTratta(b);
+        b.setMezzoList(new ArrayList<>());
+        b.getMezzoList().add(a);
+        em.persist(b);
+        transaction.commit();
+        System.out.println("aggiornamento completato");
     }
 
 
