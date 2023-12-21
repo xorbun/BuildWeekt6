@@ -34,8 +34,31 @@ public class Application
 
        //userGenerator.getUsers();
 
+        Aldettaglio negozio1 = new Aldettaglio("Roma","Tabacchi");
+        //rd.save(negozio1);
+        rd.findById(63);
+
+        //ticketgenerator.getbiglietti(63);
+
+        Mezzo bus = new Mezzo(TipoMezzo.BUS,40);
+        Mezzo bus2 = new Mezzo(TipoMezzo.BUS,40);
+        //md.save(bus2);
+        //md.save(bus);
+        Mezzo busfromdb = md.findById(66);
+        Biglietto bigliettoFromDb = bd.findById(64);
+        Biglietto biglietto2FromDb = bd.findById(65);
 
 
+        //bd.timbraticket(busfromdb,biglietto2FromDb);
+
+
+
+        //RICERCA BIGLIETTI TIMBRATI SU UN MEZZO IN PARTICOLARE:
+       System.out.println(busfromdb.getBigliettoList().size());
+
+
+        //RICERCA BIGLIETTI TIMBRATI PER ANNO:
+        md.cercaBigliettiTimbratiPerAnno(busfromdb,2023);
 
 
 

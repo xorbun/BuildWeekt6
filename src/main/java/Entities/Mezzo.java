@@ -49,6 +49,10 @@ public class Mezzo
         this.inizioattivita=LocalDate.now();
     }
 
+    public List<Biglietto> getBigliettoList() {
+        return bigliettoList;
+    }
+
     public TipoMezzo getTipomezzo()
     {
         return tipomezzo;
