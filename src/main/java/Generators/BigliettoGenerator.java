@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.time.LocalDate;
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -19,24 +20,25 @@ public class BigliettoGenerator {
     BigliettoDAO bd = new BigliettoDAO(em);
     RivenditoreDAO rd = new RivenditoreDAO(em);
 
-    public void getbiglietti(long idNegozio)
-    {
+    public void getbiglietti(long idNegozio) {
         Rivenditore rivenditorefromdb = rd.findById(idNegozio);
-        if (rivenditorefromdb != null)
-        {
+        if (rivenditorefromdb != null) {
             Scanner input = new Scanner(System.in);
             System.out.println("Quanti biglietti vuoi generare?");
-            int num = input.nextInt();
 
-            for (int i = 0; i < num; i++)
-            {
-                Biglietto ticket = new Biglietto(LocalDate.now(), rivenditorefromdb);
-                bd.save(ticket);
+            try {
+                int num = input.nextInt();
+
+                for (int i = 0; i < num; i++) {
+                    Biglietto ticket = new Biglietto(LocalDate.now(), rivenditorefromdb);
+                    bd.save(ticket);
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Errore: hai inserito un carattere non valido.");
             }
-        } else
-        {
+        } else {
             System.out.println("Errore, rivenditore con id: " + idNegozio + " non trovato");
         }
-
     }
+
 }
