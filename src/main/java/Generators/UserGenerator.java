@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.time.LocalDate;
+import java.util.Locale;
 import java.util.Random;
 
 public class UserGenerator {
@@ -19,7 +20,7 @@ public class UserGenerator {
         UtenteDAO ud = new UtenteDAO(em);
         public void getUsers() {
             for (int i = 0; i < 10; i++) {
-                Faker faker = new Faker();
+                Faker faker = new Faker(Locale.ITALIAN);
                 Random rndm = new Random();
                 long numeroTess = rndm.nextLong(1,99999999999L);
                 int randomYear = rndm.nextInt(2020, 2023);

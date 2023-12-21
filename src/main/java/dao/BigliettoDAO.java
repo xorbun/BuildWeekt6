@@ -40,9 +40,9 @@ public class BigliettoDAO {
             em.remove(found);
             transaction.commit();
 
-            System.out.println("Biglietto " + found.getId() + " removed successfully!");
+            System.out.println("Biglietto " + found.getId() + " rimosso!");
         } else {
-            System.out.println("Event with id:" + id + " not found!");
+            System.out.println("Il biglietto con l'id:" + id + " non è stato trovato!");
         }
     }
     public void timbraticket(Mezzo a,Biglietto b)
@@ -59,11 +59,11 @@ public class BigliettoDAO {
             b.getMezzoList().add(a);
             em.merge(b);
             transaction.commit();
-            System.out.println("timbrato");
+            System.out.println("Biglietto timbrato");
         }
         else
         {
-            System.out.println("biglietto non valido");
+            System.out.println("Biglietto non valido, risulta gia timbrato.");
         }
     }
 
@@ -88,7 +88,7 @@ public class BigliettoDAO {
         if(ticket.getResultList().size() > 0) {
             ticket.getResultList().forEach(System.out::println);
         }else {
-            System.out.println("Nessun biglietto venduto nel negozio " + id);
+            System.out.println("Non risulta nessun biglietto venduto nel negozio " + id);
         }
 
     }
