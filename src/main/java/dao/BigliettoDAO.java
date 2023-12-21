@@ -50,7 +50,7 @@ public class BigliettoDAO {
         //aggiorno dati in una riga della tabella(già caricata)
         Biglietto found = this.findById(b.getId());
 
-        if(found!=null)
+        if(found!=null && !b.isObliterato())
         {
             EntityTransaction transaction= em.getTransaction();
             transaction.begin();

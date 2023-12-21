@@ -3,7 +3,7 @@ package org.example;
 import Entities.*;
 import Generators.AbbonamentiGenerator;
 import Generators.BigliettoGenerator;
-import Generators.NegozziGenerator;
+import Generators.NegoziGenerator;
 import Generators.UserGenerator;
 import com.github.javafaker.Faker;
 import dao.*;
@@ -21,44 +21,98 @@ public class Application
 
     {
 
+        //  ****************************************DAO****************************************
         EntityManager em = emf.createEntityManager();
         AbbonamentoDAO ad = new AbbonamentoDAO(em);
         UtenteDAO ud = new UtenteDAO(em);
         RivenditoreDAO rd = new RivenditoreDAO(em);
         BigliettoDAO bd=new BigliettoDAO(em);
         MezzoDAO md=new MezzoDAO(em);
-        UserGenerator userGenerator = new UserGenerator();
-        BigliettoGenerator ticketgenerator= new BigliettoGenerator();
-        AbbonamentiGenerator abbonamentiGenerator = new AbbonamentiGenerator();
+        TrattaDAO td=new TrattaDAO(em);
+        TrattapermezzoDAO ttd=new TrattapermezzoDAO(em);
+        OfficinaDAO od=new OfficinaDAO(em);
+
+        //****************************************GENERATORS****************************************
+        //UserGenerator userGenerator = new UserGenerator();
+        //userGenerator.getUsers();
+        //BigliettoGenerator ticketgenerator= new BigliettoGenerator();
+        //NegoziGenerator negoziGenerator = new NegoziGenerator();
+        //negoziGenerator.negozio();
+
+        //****************************************COSTRUTTORI****************************************
+
+        Mezzo mezzofromdb=md.findById(22);
+
+        //Officina officina1=new Officina("marmitta",mezzofromdb);
+        //od.iniziomanutenzione(officina1);
+        Officina officina1=od.findById(28);
+        //od.finemanutenzione(officina1);
+        od.storicomanutenzioni(mezzofromdb);
+        //od.storicomanutenzioni(busfromdb);
+
+        //od.finemanutenzione(officina1);
+        //Tratta tdfromdb=td.findById(52);
 
 
 
-       userGenerator.getUsers();
 
-        // genera 10 negozzi randomizzati
-//        NegozziGenerator genNegozzi = new NegozziGenerator();
-//        genNegozzi.negozzio();
+        //Trattapermezzo trattapm1=new Trattapermezzo(tdfromdb,busfromdb);
+        //ttd.percorritratta(trattapm1);
 
+       //****************************************METODI****************************************
 
+        //ttd.counterpercorrenze(busfromdb,tdfromdb);
+        //userGenerator.getUsers();
 
+        //negoziGenerator.negozio();
 
-//        AbbonamentiGenerator abbonamentiGenerator1 = new AbbonamentiGenerator();
-//        Utente utente = ud.findById(4);
-//        Rivenditore rivenditore = rd.findById(14);
-//        abbonamentiGenerator1.getAbbonamento(utente, rivenditore);
-
-
-//        Utente u1 = new Utente("bob", "marlie", 123243L, LocalDate.now());
-//        ud.save(u1);
-//        ad.aggiornaAbbonamento(utente, rivenditore);
+        //Aldettaglio negozio1 = new Aldettaglio("Roma","Tabacchi");
 
 
-//        Aldettaglio rivenditore = new Aldettaglio("roma", "nome");
-//        Abbonamento abbonamento = ad.findById();
-//        ad.save(abbonamento);
+     // Mezzo bus = new Mezzo(TipoMezzo.BUS,40);
+       //Mezzo bus2 = new Mezzo(TipoMezzo.BUS,40);
+//        md.save(bus2);
+//        md.save(bus);
 
-//        ad.controlloabbonamento(abbonamento);
+      //Tratta milanoNapoli = new Tratta("Milano","Napoli");
+       //Tratta napoliBologna = new Tratta("Napoli","Bologna");
+//       td.save(milanoNapoli);
+//       td.save(napoliBologna);
+
+        // Mezzo bus1fromdb = md.findById(21);
+        //Mezzo bus2fromdb = md.findById(22);
+
+        // Tratta tratta1fromdb = td.findById(23);
+        //Tratta tratta2fromdb = td.findById(24);
+
+        //Trattapermezzo trattauno = new Trattapermezzo(tratta2fromdb,bus2fromdb,40);
+
+        //ttd.percorritratta(trattauno);
+
+       // ttd.counterpercorrenze(bus1fromdb,tratta1fromdb);
+
+        //ttd.counterTempiPercorrenza();
+
+
+
+        // Biglietto bigliettoFromDb = bd.findById(64);
+       // Biglietto biglietto2FromDb = bd.findById(65);
+
+
+        //bd.timbraticket(busfromdb,biglietto2FromDb);
+
+
+
+        //RICERCA BIGLIETTI TIMBRATI SU UN MEZZO IN PARTICOLARE:
+       //System.out.println(busfromdb.getBigliettoList().size());
+
+
+        //RICERCA BIGLIETTI TIMBRATI PER ANNO:
+       // md.cercaBigliettiTimbratiPerAnno(busfromdb,2023);
+
+
+
+
 
     }
-
 }
