@@ -39,8 +39,4 @@ public class Distributore extends Rivenditore
                 "stato=" + stato +
                 '}';
     }
-
-
-
-
 }

@@ -17,9 +17,6 @@ public abstract class Rivenditore
     @Column(name="luogo_emissione")
     private String emissione;
 
-
-
-
     public Rivenditore(){}
 
     public Rivenditore(String emissione)
