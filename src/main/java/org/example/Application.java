@@ -33,21 +33,25 @@ public class Application
         OfficinaDAO od=new OfficinaDAO(em);
 
         //****************************************GENERATORS****************************************
-        //UserGenerator userGenerator = new UserGenerator();
-        //userGenerator.getUsers();
-        //BigliettoGenerator ticketgenerator= new BigliettoGenerator();
-        //NegoziGenerator negoziGenerator = new NegoziGenerator();
-        //negoziGenerator.negozio();
+//        UserGenerator userGenerator = new UserGenerator();
+//        userGenerator.getUsers();
+//        BigliettoGenerator ticketgenerator= new BigliettoGenerator();
+//        NegoziGenerator negoziGenerator = new NegoziGenerator();
+//        negoziGenerator.negozio();
 
         //****************************************COSTRUTTORI****************************************
 
-        Mezzo mezzofromdb=md.findById(22);
+        Mezzo m1 = new Mezzo(TipoMezzo.BUS, 32);
+//        md.save(m1);
+        Mezzo mezzofromdb=md.findById(21);
 
-        //Officina officina1=new Officina("marmitta",mezzofromdb);
-        //od.iniziomanutenzione(officina1);
-        Officina officina1=od.findById(28);
-        //od.finemanutenzione(officina1);
-        od.storicomanutenzioni(mezzofromdb);
+
+        Officina officina1=new Officina("marmitta",mezzofromdb);
+//        od.iniziomanutenzione(officina1);
+        Officina officina2 =od.findById(23);
+
+        od.finemanutenzione(officina2);
+//        od.storicomanutenzioni(mezzofromdb);
         //od.storicomanutenzioni(busfromdb);
 
         //od.finemanutenzione(officina1);
@@ -109,6 +113,11 @@ public class Application
 
         //RICERCA BIGLIETTI TIMBRATI PER ANNO:
        // md.cercaBigliettiTimbratiPerAnno(busfromdb,2023);
+
+        Utente user1 = new Utente("bob", "marley", "124", LocalDate.now());
+        ud.save(user1);
+        UserGenerator user = new UserGenerator();
+        user.getUsers();
 
 
 

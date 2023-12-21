@@ -27,43 +27,37 @@ public class UserGenerator {
                 int randomMonth = faker.date().birthday().getMonth() + 1;
                 int randomDay = faker.date().birthday().getDay() + 1;
 
-                String name = faker.name().firstName();
+                String nome = faker.name().firstName();
                 String cognome = faker.name().lastName();
                 LocalDate emissioneTessera = LocalDate.of(randomYear, randomMonth, randomDay);
+                String numerotessera = null;
 
-                String allData = name.replaceAll("[^a-zA-Z]", "").toUpperCase() +
-                        cognome.replaceAll("[^a-zA-Z]", "").toUpperCase() + randomYear + randomDay + randomMonth;
-
+                String allData = nome.replaceAll("[^a-zA-Z]", "").toUpperCase() + randomDay +
+                        cognome.replaceAll("[^a-zA-Z]", "").toUpperCase() + randomYear + randomMonth;
 
                 // generate numero tessera
                 if(rndm.nextBoolean()) {
-                    long numeroTess = rndm.nextLong(1,99999999999L);
-                    StringBuilder numTessera = new StringBuilder();
-                    numTessera.append(cognome.toUpperCase().charAt(0));
+                    // check if the numero tessera is already awailable
+                    do {
+                        StringBuilder numTessera = new StringBuilder();
+                        numTessera.append(cognome.toUpperCase().charAt(0));
 
-                    for(int j = 0; j < 15; j++) {
-                        if(j < 3 && j > 0) {
-                            int num = rndm.nextInt(1, cognome.length() - 1);
-                            numTessera.append(cognome.replaceAll("[^a-zA-Z]", "").toUpperCase().charAt(num));
-                        } else {
-                            int rest = rndm.nextInt(1, allData.length() - 1);
-                            numTessera.append(allData.charAt(rest));
+                        for(int j = 0; j < 15; j++) {
+                            if(j < 3 && j > 0) {
+                                int num = rndm.nextInt(1, cognome.length() - 1);
+                                numTessera.append(cognome.replaceAll("[^a-zA-Z]", "").toUpperCase().charAt(num));
+                            } else {
+                                int rest = rndm.nextInt(1, allData.length() - 1);
+                                numTessera.append(allData.charAt(rest));
+                            }
                         }
-                    }
+                        numerotessera = String.valueOf(numTessera);
 
-
+                    } while (ud.findByNumTessera(numerotessera) != null);
                 }
 
-
-
-
-
-
-                System.out.println(numTessera);
-
-
-//                Utente user = new Utente(faker.name().firstName(),faker.name().lastName(),numeroTess, LocalDate.of(randomYear,randomMonth,randomDay));
-//                ud.save(user);
+                Utente user = new Utente(nome, cognome, numerotessera, emissioneTessera);
+                ud.save(user);
             }
 
         }

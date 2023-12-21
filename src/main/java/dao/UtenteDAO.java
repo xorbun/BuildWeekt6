@@ -6,6 +6,8 @@ import Entities.Utente;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 public class UtenteDAO {
 
@@ -52,6 +54,21 @@ public class UtenteDAO {
         }
     }
 
+    public String findByNumTessera(String num) {
+        TypedQuery<String> query = em.createNamedQuery("Utente.findNumeroTessera", String.class);
+        query.setParameter("num", num);
+
+        List<String> result = query.getResultList();
+        if (!result.isEmpty()) {
+            String numTessera = result.get(0);
+            System.out.println("found similar numero tessera! " + numTessera );
+            return numTessera;
+        } else {
+            System.out.println("No similar numero tessera");
+            return null;
+        }
+
+    }
     public void rinnovoTessera(Utente utente) {
         if (utente != null) {
             EntityTransaction transaction = em.getTransaction();
