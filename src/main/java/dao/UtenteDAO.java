@@ -5,6 +5,7 @@ import Entities.Utente;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import java.time.LocalDate;
 
 public class UtenteDAO {
 
@@ -43,16 +44,23 @@ public class UtenteDAO {
     }
 
     public void rinnovoTessera(Utente utente) {
-        if (utente != null) {
+        if (utente != null && utente.getNumerotessera() != null) {
             EntityTransaction transaction = em.getTransaction();
             transaction.begin();
-            utente.rinnovaTessera();
+            utente.setEmissionetessera(LocalDate.now());
+            utente.setScadenza();
             em.merge(utente);
             transaction.commit();
-            System.out.println("utente tessera rinnovato!");
+            System.out.println("Tessera rinnovata, nuova data di scadenza: " + utente.getScadenza());
         }
         else {
-            System.out.println("utente non trovato!");
+
+            if(utente== null) {
+                System.out.println("utente non trovato!");
+            }
+            else {
+                System.out.println("L'utente non ha alcuna tessera.");
+            }
         }
     }
 }

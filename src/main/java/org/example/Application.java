@@ -33,32 +33,19 @@ public class Application
         OfficinaDAO od=new OfficinaDAO(em);
 
         //****************************************GENERATORS****************************************
-        //UserGenerator userGenerator = new UserGenerator();
+        UserGenerator userGenerator = new UserGenerator();
         //userGenerator.getUsers();
-        //BigliettoGenerator ticketgenerator= new BigliettoGenerator();
-        //NegoziGenerator negoziGenerator = new NegoziGenerator();
+        BigliettoGenerator ticketgenerator= new BigliettoGenerator();
+        NegoziGenerator negoziGenerator = new NegoziGenerator();
         //negoziGenerator.negozio();
 
-        //****************************************COSTRUTTORI****************************************
+        //****************************************METODI****************************************
 
-        Mezzo mezzofromdb=md.findById(22);
+        Utente utente1fromdb = ud.findById(46);
 
-        //Officina officina1=new Officina("marmitta",mezzofromdb);
-        //od.iniziomanutenzione(officina1);
-        Officina officina1=od.findById(28);
-        od.finemanutenzione(officina1);
-        //od.storicomanutenzioni(busfromdb);
-
-        //od.finemanutenzione(officina1);
-        //Tratta tdfromdb=td.findById(52);
+        //ud.rinnovoTessera(utente1fromdb);
 
 
-
-
-        //Trattapermezzo trattapm1=new Trattapermezzo(tdfromdb,busfromdb);
-        //ttd.percorritratta(trattapm1);
-
-       //****************************************METODI****************************************
 
     
 
