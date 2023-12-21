@@ -3,6 +3,7 @@ package org.example;
 import Entities.*;
 import Generators.AbbonamentiGenerator;
 import Generators.BigliettoGenerator;
+import Generators.NegozziGenerator;
 import Generators.UserGenerator;
 import com.github.javafaker.Faker;
 import dao.*;
@@ -34,12 +35,10 @@ public class Application
 
        //userGenerator.getUsers();
 
-
-
-
-
-
-
+        // genera 10 negozzi randomizzati
+        NegozziGenerator genNegozzi = new NegozziGenerator();
+//        genNegozzi.negozzio();
 
     }
+
 }
