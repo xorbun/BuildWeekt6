@@ -17,19 +17,18 @@ public class Tratta
     private String capolinea;
     @Column(name="tempo_medio_percorrenza")
     private double tempomedioperc;
-    @Column(name = "tempo_effettivo_percorrenza")
-    private double tempoeffperc;
+
     @OneToMany(mappedBy = "tratta")
     private List<Mezzo>mezzoList;
 
     public Tratta(){}
 
-    public Tratta(String luogopartenza, String capolinea, double tempoeffperc)
+    public Tratta(String luogopartenza, String capolinea)
     {
         this.luogopartenza = luogopartenza;
         this.capolinea = capolinea;
         this.tempomedioperc=setTempomedioperc();
-        this.tempoeffperc = tempoeffperc;
+
     }
 
     public String getLuogopartenza()
@@ -64,15 +63,6 @@ public class Tratta
         return this.tempomedioperc;
     }
 
-    public double getTempoeffperc()
-    {
-        return tempoeffperc;
-    }
-
-    public void setTempoeffperc(double tempoeffperc)
-    {
-        this.tempoeffperc = tempoeffperc;
-    }
 
     public long getId() {
         return id;
@@ -85,7 +75,6 @@ public class Tratta
                 "luogopartenza='" + luogopartenza + '\'' +
                 ", capolinea='" + capolinea + '\'' +
                 ", tempomedioperc=" + tempomedioperc +
-                ", tempoeffperc=" + tempoeffperc +
                 '}';
     }
 }

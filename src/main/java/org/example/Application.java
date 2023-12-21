@@ -34,6 +34,7 @@ public class Application
         //****************************************GENERATORS****************************************
         UserGenerator userGenerator = new UserGenerator();
         BigliettoGenerator ticketgenerator= new BigliettoGenerator();
+        NegoziGenerator negoziGenerator = new NegoziGenerator();
 
         //****************************************COSTRUTTORI****************************************
 //        Tratta tdfromdb=td.findById(52);
@@ -46,29 +47,35 @@ public class Application
         //ttd.counterpercorrenze(busfromdb,tdfromdb);
         //userGenerator.getUsers();
 
+        //negoziGenerator.negozio();
+
         //Aldettaglio negozio1 = new Aldettaglio("Roma","Tabacchi");
 
 
-//       Mezzo bus = new Mezzo(TipoMezzo.BUS,40);
-//        Mezzo bus2 = new Mezzo(TipoMezzo.BUS,40);
+      Mezzo bus = new Mezzo(TipoMezzo.BUS,40);
+       Mezzo bus2 = new Mezzo(TipoMezzo.BUS,40);
 //        md.save(bus2);
 //        md.save(bus);
 
-        Tratta milanoNapoli = new Tratta("Milano","Napoli",20);
-        Tratta napoliBologna = new Tratta("Napoli","Bologna",50);
-//        td.save(milanoNapoli);
-//        td.save(napoliBologna);
+      Tratta milanoNapoli = new Tratta("Milano","Napoli");
+       Tratta napoliBologna = new Tratta("Napoli","Bologna");
+//       td.save(milanoNapoli);
+//       td.save(napoliBologna);
 
-         Mezzo bus1fromdb = md.findById(19);
-         Mezzo bus2fromdb = md.findById(12);
+         Mezzo bus1fromdb = md.findById(21);
+        Mezzo bus2fromdb = md.findById(22);
 
-         Tratta tratta1fromdb = td.findById(13);
-         Tratta tratta2fromdb = td.findById(14);
+         Tratta tratta1fromdb = td.findById(23);
+        Tratta tratta2fromdb = td.findById(24);
 
-         Trattapermezzo uno = new Trattapermezzo(tratta1fromdb,bus1fromdb);
-         //ttd.percorritratta(uno);
+        Trattapermezzo trattauno = new Trattapermezzo(tratta2fromdb,bus2fromdb,40);
+
+        //ttd.percorritratta(trattauno);
 
         ttd.counterpercorrenze(bus1fromdb,tratta1fromdb);
+
+        ttd.counterTempiPercorrenza();
+
 
 
         // Biglietto bigliettoFromDb = bd.findById(64);
