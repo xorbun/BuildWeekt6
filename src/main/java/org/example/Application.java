@@ -30,15 +30,26 @@ public class Application
         MezzoDAO md=new MezzoDAO(em);
         TrattaDAO td=new TrattaDAO(em);
         TrattapermezzoDAO ttd=new TrattapermezzoDAO(em);
+        OfficinaDAO od=new OfficinaDAO(em);
 
         //****************************************GENERATORS****************************************
         UserGenerator userGenerator = new UserGenerator();
-        BigliettoGenerator ticketgenerator= new BigliettoGenerator();
-        NegoziGenerator negoziGenerator = new NegoziGenerator();
+        //userGenerator.getUsers();
+        //BigliettoGenerator ticketgenerator= new BigliettoGenerator();
+        //NegoziGenerator negoziGenerator = new NegoziGenerator();
+       // negoziGenerator.negozio();
 
         //****************************************COSTRUTTORI****************************************
-//        Tratta tdfromdb=td.findById(52);
-//        Mezzo busfromdb = md.findById(2);
+        Mezzo busfromdb = md.findById(23);
+        Officina officina1=new Officina("marmitta",busfromdb);
+        od.save(officina1);
+
+        //od.finemanutenzione(officina1);
+        //Tratta tdfromdb=td.findById(52);
+
+
+
+
         //Trattapermezzo trattapm1=new Trattapermezzo(tdfromdb,busfromdb);
         //ttd.percorritratta(trattapm1);
 

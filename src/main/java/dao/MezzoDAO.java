@@ -46,19 +46,23 @@ public class MezzoDAO {
     }
 
 
-    public void cercaBigliettiTimbratiPerAnno(Mezzo m,int anno){
+    public void cercaBigliettiTimbratiPerAnno(Mezzo m,int anno)
+    {
 
       List<Biglietto> tickets=  m.getBigliettoList().stream().filter(ticket->ticket.getTimbro().getYear()== anno).toList();
       if(tickets.size() == 0) {
           System.out.println("Nessun biglietto timbrato sul mezzo con id: " + m.getId() + " per l'anno "+ anno);
       }
 
-      else {
+      else
+      {
           System.out.println("Biglietti timbrati per l'anno "+anno + " sul mezzo con id: " +m.getId()+" : ");
           tickets.forEach(System.out::println);
       }
 
 
     }
+
+
 
 }
