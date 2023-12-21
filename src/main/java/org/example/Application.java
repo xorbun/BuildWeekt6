@@ -59,56 +59,7 @@ public class Application
 
        //****************************************METODI****************************************
 
-        //ttd.counterpercorrenze(busfromdb,tdfromdb);
-        //userGenerator.getUsers();
-
-        //negoziGenerator.negozio();
-
-        //Aldettaglio negozio1 = new Aldettaglio("Roma","Tabacchi");
-
-
-     // Mezzo bus = new Mezzo(TipoMezzo.BUS,40);
-       //Mezzo bus2 = new Mezzo(TipoMezzo.BUS,40);
-//        md.save(bus2);
-//        md.save(bus);
-
-      //Tratta milanoNapoli = new Tratta("Milano","Napoli");
-       //Tratta napoliBologna = new Tratta("Napoli","Bologna");
-//       td.save(milanoNapoli);
-//       td.save(napoliBologna);
-
-        // Mezzo bus1fromdb = md.findById(21);
-        //Mezzo bus2fromdb = md.findById(22);
-
-        // Tratta tratta1fromdb = td.findById(23);
-        //Tratta tratta2fromdb = td.findById(24);
-
-        //Trattapermezzo trattauno = new Trattapermezzo(tratta2fromdb,bus2fromdb,40);
-
-        //ttd.percorritratta(trattauno);
-
-       // ttd.counterpercorrenze(bus1fromdb,tratta1fromdb);
-
-        //ttd.counterTempiPercorrenza();
-
-
-
-        // Biglietto bigliettoFromDb = bd.findById(64);
-       // Biglietto biglietto2FromDb = bd.findById(65);
-
-
-        //bd.timbraticket(busfromdb,biglietto2FromDb);
-
-
-
-        //RICERCA BIGLIETTI TIMBRATI SU UN MEZZO IN PARTICOLARE:
-       //System.out.println(busfromdb.getBigliettoList().size());
-
-
-        //RICERCA BIGLIETTI TIMBRATI PER ANNO:
-       // md.cercaBigliettiTimbratiPerAnno(busfromdb,2023);
-
-
+    
 
 
 
