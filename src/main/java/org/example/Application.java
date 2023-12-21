@@ -1,10 +1,7 @@
 package org.example;
 
 import Entities.*;
-import Generators.AbbonamentiGenerator;
-import Generators.BigliettoGenerator;
-import Generators.NegoziGenerator;
-import Generators.UserGenerator;
+import Generators.*;
 import com.github.javafaker.Faker;
 import dao.*;
 
@@ -34,15 +31,22 @@ public class Application
 
         //****************************************GENERATORS****************************************
         UserGenerator userGenerator = new UserGenerator();
-        //userGenerator.getUsers();
+
         BigliettoGenerator ticketgenerator= new BigliettoGenerator();
         NegoziGenerator negoziGenerator = new NegoziGenerator();
-        //negoziGenerator.negozio();
+        MezzoGenerator mezzoGenerator = new MezzoGenerator();
 
         //****************************************METODI****************************************
+        //userGenerator.getUsers();
+        //negoziGenerator.negozio();
+        //mezzoGenerator.generaMezzi();
 
+        Rivenditore negozio = rd.findById(17);
         Utente utente1fromdb = ud.findById(46);
 
+        //ticketgenerator.getbiglietti(17);
+
+        //negoziGenerator.negozio();
         //ud.rinnovoTessera(utente1fromdb);
 
         //ud.generaTessera(utente1fromdb);

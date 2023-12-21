@@ -10,6 +10,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.time.LocalDate;
 import java.util.Random;
+import java.util.Scanner;
 
 public class BigliettoGenerator {
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("Atac");
@@ -18,19 +19,23 @@ public class BigliettoGenerator {
     BigliettoDAO bd = new BigliettoDAO(em);
     RivenditoreDAO rd = new RivenditoreDAO(em);
 
-    public void getbiglietti(long id)
+    public void getbiglietti(long idNegozio)
     {
-        Rivenditore rivenditorefromdb = rd.findById(id);
+        Rivenditore rivenditorefromdb = rd.findById(idNegozio);
         if (rivenditorefromdb != null)
         {
-            for (int i = 0; i < 2; i++)
+            Scanner input = new Scanner(System.in);
+            System.out.println("Quanti biglietti vuoi generare?");
+            int num = input.nextInt();
+
+            for (int i = 0; i < num; i++)
             {
                 Biglietto ticket = new Biglietto(LocalDate.now(), rivenditorefromdb);
                 bd.save(ticket);
             }
         } else
         {
-            System.out.println("Errore, rivenditore con id: " + id + " non trovato");
+            System.out.println("Errore, rivenditore con id: " + idNegozio + " non trovato");
         }
 
     }
