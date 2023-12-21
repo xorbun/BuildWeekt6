@@ -59,6 +59,16 @@ public class UserGenerator {
                 Utente user = new Utente(nome, cognome, numerotessera, emissioneTessera);
                 ud.save(user);
             }
+            for (int i = 0; i < 5; i++) {
+                Faker faker = new Faker(Locale.ITALIAN);
+                Random rndm = new Random();
+                int randomYear = rndm.nextInt(2020, 2023);
+                int randomMonth = rndm.nextInt(1, 12);
+                int randomDay = rndm.nextInt(1, 30);
+
+                Utente user = new Utente(faker.name().firstName(),faker.name().lastName(),null, null);
+                ud.save(user);
+            }
 
         }
 
