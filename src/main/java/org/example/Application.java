@@ -33,11 +33,31 @@ public class Application
 
 
 
-       //userGenerator.getUsers();
+//       userGenerator.getUsers();
 
         // genera 10 negozzi randomizzati
-        NegozziGenerator genNegozzi = new NegozziGenerator();
+//        NegozziGenerator genNegozzi = new NegozziGenerator();
 //        genNegozzi.negozzio();
+
+
+
+
+        AbbonamentiGenerator abbonamentiGenerator1 = new AbbonamentiGenerator();
+        Utente utente = ud.findById(1);
+        Rivenditore rivenditore = rd.findById(14);
+//        abbonamentiGenerator1.getAbbonamento(utente, rivenditore);
+
+
+        Utente u1 = new Utente("bob", "marlie", 123243L, LocalDate.now());
+//        ud.save(u1);
+        ad.aggiornaAbbonamento(u1, rivenditore);
+
+
+//        Aldettaglio rivenditore = new Aldettaglio("roma", "nome");
+//        Abbonamento abbonamento = ad.findById();
+//        ad.save(abbonamento);
+
+//        ad.controlloabbonamento(abbonamento);
 
     }
 

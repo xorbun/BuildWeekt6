@@ -1,5 +1,6 @@
 package dao;
 
+import Entities.Abbonamento;
 import Entities.Rivenditore;
 import Entities.Utente;
 
@@ -20,6 +21,15 @@ public class UtenteDAO {
         em.persist(utente);
         transaction.commit();
 
+        System.out.println("Utente " + utente.getId() + " aggiunto correttamente!");
+    }
+
+    public void saveAbbonamento(Utente utente, Abbonamento abb) {
+        EntityTransaction transaction = em.getTransaction();
+        utente.setAbbonamento(abb);
+        transaction.begin();
+        em.persist(utente);
+        transaction.commit();
         System.out.println("Utente " + utente.getId() + " aggiunto correttamente!");
     }
 

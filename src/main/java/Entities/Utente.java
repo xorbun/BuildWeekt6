@@ -1,6 +1,9 @@
 package Entities;
 
 import com.sun.istack.Nullable;
+import org.hibernate.annotations.LazyToOne;
+import org.hibernate.annotations.LazyToOneOption;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.UUID;
@@ -25,7 +28,11 @@ public class Utente
     @Nullable
     private LocalDate scadenza;
 
-
+    // N+1 query problem resolved
+    @OneToOne(mappedBy = "utente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @LazyToOne(LazyToOneOption.NO_PROXY)
+    @JoinColumn(name = "abbonamento_id")
+    private Abbonamento abbonamento;
 
     public Utente(){}
 
@@ -46,6 +53,14 @@ public class Utente
         this.numerotessera = numerotessera;
         this.emissionetessera=emissionetessera;
         this.scadenza=setScadenza();
+    }
+
+    public Abbonamento getAbbonamento() {
+        return abbonamento;
+    }
+
+    public void setAbbonamento(Abbonamento abbonamento) {
+        this.abbonamento = abbonamento;
     }
 
     public String getNome()
