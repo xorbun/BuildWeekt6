@@ -30,13 +30,6 @@ public class AbbonamentoDAO {
         System.out.println("Abbonamento " + abbonamento.getId() + " aggiunto correttamente!");
     }
 
-    public void saveAbb(Abbonamento abbonamento) {
-        EntityTransaction transaction = em.getTransaction();
-        transaction.begin();
-        em.persist(abbonamento);
-        transaction.commit();
-    }
-
     public Abbonamento findById(long id) {
         return em.find(Abbonamento.class, id);
     }
@@ -171,8 +164,7 @@ public class AbbonamentoDAO {
                 Abbonamento abb = findById(user.getAbbonamento().getId());
                 System.out.println("scadenza" + abb.getScadenza());
 
-                System.out.println("today is after yesterday/ expired? " + LocalDate.now().isAfter(abb.getScadenza()));
-                // is expired
+                // is expired?
                 if(LocalDate.now().isAfter(abb.getScadenza())) {
                     abb.setTipologia(abbType);
                     abb.setScadenza();
@@ -189,11 +181,11 @@ public class AbbonamentoDAO {
                     em.persist(abb);
                     transaction.commit();
 
-                    System.out.println("abbonamento aggiornato!");
+                    System.out.println("abbonamento rinnovato fino al " + abb.getScadenza());
                 } else {
                     System.out.println("abbonamento ancora valido fino a " + abb.getScadenza());
                     Scanner scanner1 = new Scanner(System.in);
-                    System.out.println("vuoi ancora aggiornarlo? y/n");
+                    System.out.println("vuoi daverro rinnovarlo? y/n");
 
                     String update = scanner1.nextLine();
                     if(update.equalsIgnoreCase("y")) {
@@ -212,11 +204,11 @@ public class AbbonamentoDAO {
                         em.persist(abb);
                         transaction.commit();
 
-                        System.out.println("abbonamento aggiornato!");
+                        System.out.println("abbonamento ancora valido fino a " + abb.getScadenza());
                     } else if (update.equalsIgnoreCase("n")) {
                         System.out.println("Arrivaderci!");
                     } else {
-                        System.out.println("invalid input!");
+                        System.out.println("input invalido!");
                     }
                 }
 
@@ -224,8 +216,6 @@ public class AbbonamentoDAO {
                 // crea abbonamento
                 Abbonamento abb = new Abbonamento(abbType, rivenditore);
                 abb.setUtente(user);
-
-                System.out.println("cuurent abb " + abb);
 
                 // check weather the user is exsist in db/ has no tessera
                 // TransientPropertyValueException
@@ -235,14 +225,14 @@ public class AbbonamentoDAO {
                     em.persist(abb);
                     transaction.commit();
 
-                    System.out.println("abbonamento creato!");
+                    System.out.println("abbonamento creato e valido fino a " + abb.getScadenza());
                 } catch (TransientPropertyValueException e) {
                     System.err.println("utente non esiste nel db/ non ha tessera " + e);
                 }
             }
 
         } catch (InputMismatchException e) {
-            System.err.println("Input not valid! deve essere 1 or 2" + e);
+            System.err.println("Input non valido! deve essere 1 or 2" + e);
         } finally {
             scanner.close();
         }
