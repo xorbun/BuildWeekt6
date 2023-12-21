@@ -51,22 +51,16 @@ public class TrattapermezzoDAO
     public void counterpercorrenze(Mezzo m, Tratta t)
     {
 
-        MezzoDAO md=new MezzoDAO(em);
-        TrattaDAO td=new TrattaDAO(em);
-        Mezzo found1=md.findById(m.getId());
-        Tratta found2=td.findById(t.getId());
-        if(found1!= null && found2!=null)
-        {
-            long tid=t.getId();
-            long mid=m.getId();
-            TypedQuery<Trattapermezzo> trattapermezzoTypedQuery = em.createNamedQuery("conta_percorrenze", Trattapermezzo.class);
-            trattapermezzoTypedQuery.setParameter("tid", tid);
-            trattapermezzoTypedQuery.setParameter("mid", mid);
-            System.out.println("La tratta con id " + tid + " è stata percorsa per " + trattapermezzoTypedQuery.getResultList().size() + " volte dal mezzo con id " + mid);
-        }
-        else
-        {
-            if(found2==null)
+        if(m!= null && t!= null) {
+                long tid=t.getId();
+                long mid=m.getId();
+                TypedQuery<Trattapermezzo> trattapermezzoTypedQuery = em.createNamedQuery("conta_percorrenze", Trattapermezzo.class);
+                trattapermezzoTypedQuery.setParameter("tid", tid);
+                trattapermezzoTypedQuery.setParameter("mid", mid);
+                System.out.println("La tratta con id " + tid + " è stata percorsa per " + trattapermezzoTypedQuery.getResultList().size() + " volte dal mezzo con id " + mid);
+            }
+        else {
+            if (t==null)
             {
                 System.out.println("nessuna tratta trovata");
             }
@@ -75,5 +69,9 @@ public class TrattapermezzoDAO
                 System.out.println("nessun mezzo trovato");
             }
         }
+
     }
+
+
+
 }
