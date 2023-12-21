@@ -43,8 +43,9 @@ public class Application
 
         Mezzo mezzofromdb=md.findById(22);
 
-        Officina officina1=new Officina("marmitta",mezzofromdb);
+        //Officina officina1=new Officina("marmitta",mezzofromdb);
         //od.iniziomanutenzione(officina1);
+        Officina officina1=od.findById(28);
         od.finemanutenzione(officina1);
         //od.storicomanutenzioni(busfromdb);
 
