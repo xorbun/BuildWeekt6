@@ -1,6 +1,7 @@
 package dao;
 
 import Entities.*;
+import org.hibernate.TransientPropertyValueException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -27,6 +28,13 @@ public class AbbonamentoDAO {
         em.persist(abbonamento);
         transaction.commit();
         System.out.println("Abbonamento " + abbonamento.getId() + " aggiunto correttamente!");
+    }
+
+    public void saveAbb(Abbonamento abbonamento) {
+        EntityTransaction transaction = em.getTransaction();
+        transaction.begin();
+        em.persist(abbonamento);
+        transaction.commit();
     }
 
     public Abbonamento findById(long id) {
@@ -137,12 +145,15 @@ public class AbbonamentoDAO {
         }
     }
 
+    // permette di aggiungere o aggiornare abbonamento
     public void aggiornaAbbonamento(Utente u, Rivenditore rivenditore) {
         Utente user = u;
         user.getAbbonamento();
+
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Che tipo di abbonamento vuoi creare? Premi 1 per settimanale o 2 per mensile");
+
         try {
             int type = scanner.nextInt();
             Tipologia abbType;
@@ -154,20 +165,82 @@ public class AbbonamentoDAO {
                 throw new InputMismatchException();
             }
 
+            // need to factorize
             // aggiorna abbonamento
             if (user.getAbbonamento() != null) {
+                Abbonamento abb = findById(user.getAbbonamento().getId());
+                System.out.println("scadenza" + abb.getScadenza());
 
-                System.out.println("abbonamento aggiornato!");
+                System.out.println("today is after yesterday/ expired? " + LocalDate.now().isAfter(abb.getScadenza()));
+                // is expired
+                if(LocalDate.now().isAfter(abb.getScadenza())) {
+                    abb.setTipologia(abbType);
+                    abb.setScadenza();
+
+                    // check weather the user is already in the db
+                    if(!em.contains(user)) {
+                        user = em.merge(user);
+                    }
+
+                    abb.setUtente(user);
+
+                    EntityTransaction transaction = em.getTransaction();
+                    transaction.begin();
+                    em.persist(abb);
+                    transaction.commit();
+
+                    System.out.println("abbonamento aggiornato!");
+                } else {
+                    System.out.println("abbonamento ancora valido fino a " + abb.getScadenza());
+                    Scanner scanner1 = new Scanner(System.in);
+                    System.out.println("vuoi ancora aggiornarlo? y/n");
+
+                    String update = scanner1.nextLine();
+                    if(update.equalsIgnoreCase("y")) {
+                        abb.setTipologia(abbType);
+                        abb.setScadenza();
+
+                        // check weather the user is already in the db
+                        if(!em.contains(user)) {
+                            user = em.merge(user);
+                        }
+
+                        abb.setUtente(user);
+
+                        EntityTransaction transaction = em.getTransaction();
+                        transaction.begin();
+                        em.persist(abb);
+                        transaction.commit();
+
+                        System.out.println("abbonamento aggiornato!");
+                    } else if (update.equalsIgnoreCase("n")) {
+                        System.out.println("Arrivaderci!");
+                    } else {
+                        System.out.println("invalid input!");
+                    }
+                }
 
             } else {
                 // crea abbonamento
                 Abbonamento abb = new Abbonamento(abbType, rivenditore);
                 abb.setUtente(user);
 
-                save(abb);
+                System.out.println("cuurent abb " + abb);
 
-                System.out.println("abbonamento creato!");
+                // check weather the user is exsist in db/ has no tessera
+                // TransientPropertyValueException
+                try {
+                    EntityTransaction transaction = em.getTransaction();
+                    transaction.begin();
+                    em.persist(abb);
+                    transaction.commit();
+
+                    System.out.println("abbonamento creato!");
+                } catch (TransientPropertyValueException e) {
+                    System.err.println("utente non esiste nel db/ non ha tessera " + e);
+                }
             }
+
         } catch (InputMismatchException e) {
             System.err.println("Input not valid! deve essere 1 or 2" + e);
         } finally {

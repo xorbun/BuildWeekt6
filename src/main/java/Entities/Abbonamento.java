@@ -41,6 +41,7 @@ public class Abbonamento
         this.scadenza = setScadenza();
     }
 
+
     public void setUtente(Utente utente) {
         this.utente = utente;
     }

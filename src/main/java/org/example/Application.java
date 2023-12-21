@@ -43,14 +43,14 @@ public class Application
 
 
         AbbonamentiGenerator abbonamentiGenerator1 = new AbbonamentiGenerator();
-        Utente utente = ud.findById(1);
+        Utente utente = ud.findById(4);
         Rivenditore rivenditore = rd.findById(14);
 //        abbonamentiGenerator1.getAbbonamento(utente, rivenditore);
 
 
         Utente u1 = new Utente("bob", "marlie", 123243L, LocalDate.now());
 //        ud.save(u1);
-        ad.aggiornaAbbonamento(u1, rivenditore);
+        ad.aggiornaAbbonamento(utente, rivenditore);
 
 
 //        Aldettaglio rivenditore = new Aldettaglio("roma", "nome");
