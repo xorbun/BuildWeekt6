@@ -18,8 +18,7 @@ public class Tratta
     @Column(name="tempo_medio_percorrenza")
     private double tempomedioperc;
 
-    @OneToMany(mappedBy = "tratta")
-    private List<Mezzo>mezzoList;
+
 
     public Tratta(){}
 

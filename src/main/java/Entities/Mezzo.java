@@ -20,21 +20,16 @@ public class Mezzo
 
     @Enumerated(EnumType.STRING)
     private StatoMezzo statomezzo;
-    @Nullable
-    @Column(name="inizio_manutenzione")
-    private LocalDate iniziomanutenzione;
-    @Nullable
-    @Column(name="fine_manutenzione")
-    private LocalDate finemanutenzione;
+
+
     @Column(name="inizio_attività")
     @Nullable
     private LocalDate inizioattivita;
     @Column(name="fine_attività")
     @Nullable
     private LocalDate fineattivita;
-    @ManyToOne
-    @JoinColumn(name="tratta_id")
-    private Tratta tratta;
+
+
     @ManyToMany
     @JoinTable(name="vidimati", joinColumns = @JoinColumn(name="mezzo_id"),
             inverseJoinColumns = @JoinColumn(name="biglietto_id"))
@@ -86,35 +81,6 @@ public class Mezzo
     {
         this.statomezzo = statomezzo;
     }
-
-    public LocalDate getIniziomanutenzione()
-    {
-        return iniziomanutenzione;
-    }
-
-    public void setIniziomanutenzione()
-    {
-        this.statomezzo=StatoMezzo.MANUTENZIONE;
-        this.iniziomanutenzione=LocalDate.now();
-        this.fineattivita=LocalDate.now();
-        System.out.println("Manutenzione avviata in data"+this.iniziomanutenzione);
-    }
-
-    public LocalDate getFinemanutenzione()
-    {
-        return finemanutenzione;
-    }
-
-    public void setFinemanutenzione()
-    {
-        this.statomezzo=StatoMezzo.ATTIVO;
-        if(this.iniziomanutenzione!=null)
-        {
-            this.finemanutenzione = LocalDate.now();
-            System.out.println("Manutenzione terminata in data"+ this.finemanutenzione +"mezzo in attività");
-        }
-    }
-
     public LocalDate getInizioattivita()
     {
         return inizioattivita;
@@ -142,8 +108,6 @@ public class Mezzo
                 "tipomezzo=" + tipomezzo +
                 ", capienza=" + capienza +
                 ", statomezzo=" + statomezzo +
-                ", iniziomanutenzione=" + iniziomanutenzione +
-                ", finemanutenzione=" + finemanutenzione +
                 ", inizioattivita=" + inizioattivita +
                 ", fineattivita=" + fineattivita +
                 '}';

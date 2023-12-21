@@ -33,16 +33,20 @@ public class Application
         OfficinaDAO od=new OfficinaDAO(em);
 
         //****************************************GENERATORS****************************************
-        UserGenerator userGenerator = new UserGenerator();
+        //UserGenerator userGenerator = new UserGenerator();
         //userGenerator.getUsers();
         //BigliettoGenerator ticketgenerator= new BigliettoGenerator();
         //NegoziGenerator negoziGenerator = new NegoziGenerator();
-       // negoziGenerator.negozio();
+        //negoziGenerator.negozio();
 
         //****************************************COSTRUTTORI****************************************
-        Mezzo busfromdb = md.findById(23);
-        Officina officina1=new Officina("marmitta",busfromdb);
-        od.save(officina1);
+
+        Mezzo mezzofromdb=md.findById(22);
+
+        Officina officina1=new Officina("marmitta",mezzofromdb);
+        //od.iniziomanutenzione(officina1);
+        od.finemanutenzione(officina1);
+        //od.storicomanutenzioni(busfromdb);
 
         //od.finemanutenzione(officina1);
         //Tratta tdfromdb=td.findById(52);
@@ -63,29 +67,29 @@ public class Application
         //Aldettaglio negozio1 = new Aldettaglio("Roma","Tabacchi");
 
 
-      Mezzo bus = new Mezzo(TipoMezzo.BUS,40);
-       Mezzo bus2 = new Mezzo(TipoMezzo.BUS,40);
+     // Mezzo bus = new Mezzo(TipoMezzo.BUS,40);
+       //Mezzo bus2 = new Mezzo(TipoMezzo.BUS,40);
 //        md.save(bus2);
 //        md.save(bus);
 
-      Tratta milanoNapoli = new Tratta("Milano","Napoli");
-       Tratta napoliBologna = new Tratta("Napoli","Bologna");
+      //Tratta milanoNapoli = new Tratta("Milano","Napoli");
+       //Tratta napoliBologna = new Tratta("Napoli","Bologna");
 //       td.save(milanoNapoli);
 //       td.save(napoliBologna);
 
-         Mezzo bus1fromdb = md.findById(21);
-        Mezzo bus2fromdb = md.findById(22);
+        // Mezzo bus1fromdb = md.findById(21);
+        //Mezzo bus2fromdb = md.findById(22);
 
-         Tratta tratta1fromdb = td.findById(23);
-        Tratta tratta2fromdb = td.findById(24);
+        // Tratta tratta1fromdb = td.findById(23);
+        //Tratta tratta2fromdb = td.findById(24);
 
-        Trattapermezzo trattauno = new Trattapermezzo(tratta2fromdb,bus2fromdb,40);
+        //Trattapermezzo trattauno = new Trattapermezzo(tratta2fromdb,bus2fromdb,40);
 
         //ttd.percorritratta(trattauno);
 
-        ttd.counterpercorrenze(bus1fromdb,tratta1fromdb);
+       // ttd.counterpercorrenze(bus1fromdb,tratta1fromdb);
 
-        ttd.counterTempiPercorrenza();
+        //ttd.counterTempiPercorrenza();
 
 
 

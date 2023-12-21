@@ -6,6 +6,7 @@ import java.util.List;
 
 @Entity
 @Table(name="officina")
+@NamedQuery(name="ricerca_manutenzioni_per_mezzo",query = "SELECT a FROM Officina a WHERE a.mezzo.id= :id")
 public class Officina
 {
     @Id
@@ -52,14 +53,17 @@ public class Officina
 
     public void setIniziomanutenzione(LocalDate iniziomanutenzione) {
         this.iniziomanutenzione = iniziomanutenzione;
+        this.mezzo.setStatomezzo(StatoMezzo.MANUTENZIONE);
     }
 
     public LocalDate getFinemanutenzione() {
         return finemanutenzione;
+
     }
 
     public void setFinemanutenzione(LocalDate finemanutenzione) {
         this.finemanutenzione = finemanutenzione;
+        this.mezzo.setStatomezzo(StatoMezzo.ATTIVO);
     }
 
     public Mezzo getMezzo() {
@@ -78,7 +82,7 @@ public class Officina
                 ", nomeriparazione='" + nomeriparazione + '\'' +
                 ", iniziomanutenzione=" + iniziomanutenzione +
                 ", finemanutenzione=" + finemanutenzione +
-                ", mezzoList=" + mezzo +
+                ", mezzo=" + mezzo +
                 '}';
     }
 }
