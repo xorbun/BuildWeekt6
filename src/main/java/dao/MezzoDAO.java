@@ -1,11 +1,13 @@
 package dao;
 
 import Entities.Abbonamento;
+import Entities.Biglietto;
 import Entities.Mezzo;
-import Entities.Tratta;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import java.util.ArrayList;
+import java.time.LocalDate;
+import java.util.List;
 
 public class MezzoDAO {
 
@@ -42,18 +44,21 @@ public class MezzoDAO {
             System.out.println("Mezzo con id: " + id + " non trovato!");
         }
     }
-    public void percorritratta(Mezzo a,Tratta b)
-    {
-        EntityTransaction transaction= em.getTransaction();
-        transaction.begin();
-        a.setTratta(b);
-        b.setMezzoList(new ArrayList<>());
-        b.getMezzoList().add(a);
-        em.persist(b);
-        transaction.commit();
-        System.out.println("aggiornamento completato");
+
+
+    public void cercaBigliettiTimbratiPerAnno(Mezzo m,int anno){
+
+      List<Biglietto> tickets=  m.getBigliettoList().stream().filter(ticket->ticket.getTimbro().getYear()== anno).toList();
+      if(tickets.size() == 0) {
+          System.out.println("Nessun biglietto timbrato sul mezzo con id: " + m.getId() + " per l'anno "+ anno);
+      }
+
+      else {
+          System.out.println("Biglietti timbrati per l'anno "+anno + " sul mezzo con id: " +m.getId()+" : ");
+          tickets.forEach(System.out::println);
+      }
+
+
     }
-
-
 
 }
