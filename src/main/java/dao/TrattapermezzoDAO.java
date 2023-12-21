@@ -38,43 +38,40 @@ public class TrattapermezzoDAO
     {
         Trattapermezzo found = this.findById(id);
 
-        if (found != null)
-        {
+        if (found != null) {
             EntityTransaction transaction = em.getTransaction();
             transaction.begin();
             em.remove(found);
             transaction.commit();
             System.out.println("percorrenza " + found.getId() + " rimosso!");
-        } else
-        {
+        } else {
             System.out.println("La percorrenza with id:" + id + " non trovato!");
         }
     }
     public void counterpercorrenze(Mezzo m, Tratta t)
     {
-       if(m!=null && t!=null)
-       {
-        MezzoDAO md=new MezzoDAO(em);
-        TrattaDAO td=new TrattaDAO(em);
-        Mezzo found1=md.findById(mid);
-        Tratta found2=td.findById(tid);
-        if(found1!= null && found2!=null)
-        {
-            TypedQuery<Trattapermezzo> trattapermezzoTypedQuery = em.createNamedQuery("conta_percorrenze", Trattapermezzo.class);
-            trattapermezzoTypedQuery.setParameter("tid", tid);
-            trattapermezzoTypedQuery.setParameter("mid", mid);
-            System.out.println("La tratta con id " + tid + " è stata percorsa per " + trattapermezzoTypedQuery.getResultList().size() + " volte dal mezzo con id " + mid);
-        }
-        else
-        {
-            if(found1==null)
-            {
-                System.out.println("nessun mezzo trovato");
+
+        if(m!= null && t!= null) {
+                long tid=t.getId();
+                long mid=m.getId();
+                TypedQuery<Trattapermezzo> trattapermezzoTypedQuery = em.createNamedQuery("conta_percorrenze", Trattapermezzo.class);
+                trattapermezzoTypedQuery.setParameter("tid", tid);
+                trattapermezzoTypedQuery.setParameter("mid", mid);
+                System.out.println("La tratta con id " + tid + " è stata percorsa per " + trattapermezzoTypedQuery.getResultList().size() + " volte dal mezzo con id " + mid);
             }
-            else
+        else {
+            if (t==null)
             {
                 System.out.println("nessuna tratta trovata");
             }
+            else
+            {
+                System.out.println("nessun mezzo trovato");
+            }
         }
+
     }
+
+
+
 }
