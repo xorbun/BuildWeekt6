@@ -51,15 +51,17 @@ public class TrattapermezzoDAO
     public void counterpercorrenze(Mezzo m, Tratta t)
     {
 
-        if(m!= null && t!= null) {
-                long tid=t.getId();
-                long mid=m.getId();
-                TypedQuery<Trattapermezzo> trattapermezzoTypedQuery = em.createNamedQuery("conta_percorrenze", Trattapermezzo.class);
-                trattapermezzoTypedQuery.setParameter("tid", tid);
-                trattapermezzoTypedQuery.setParameter("mid", mid);
-                System.out.println("La tratta con id " + tid + " è stata percorsa per " + trattapermezzoTypedQuery.getResultList().size() + " volte dal mezzo con id " + mid);
-            }
-        else {
+        if(m!= null && t!= null)
+        {
+            long tid=t.getId();
+            long mid=m.getId();
+            TypedQuery<Trattapermezzo> trattapermezzoTypedQuery = em.createNamedQuery("conta_percorrenze", Trattapermezzo.class);
+            trattapermezzoTypedQuery.setParameter("tid", tid);
+            trattapermezzoTypedQuery.setParameter("mid", mid);
+            System.out.println("La tratta con id " + tid + " è stata percorsa per " + trattapermezzoTypedQuery.getResultList().size() + " volte dal mezzo con id " + mid);
+        }
+        else
+        {
             if (t==null)
             {
                 System.out.println("nessuna tratta trovata");
