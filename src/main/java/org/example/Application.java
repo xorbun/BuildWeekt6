@@ -39,7 +39,7 @@ public class Application
         System.out.println("-------GENERAZIONE UTENTI-----------");
         //userGenerator.getUsers();
 
-        Utente utente1fromdb = ud.findById(6);
+        Utente utente1fromdb = ud.findById(11);
         Utente utente2fromdb = ud.findById(10);
 
         System.out.println("-------GENERAZIONE RIVENDITORI-----------");
@@ -62,7 +62,7 @@ public class Application
         //----------------GENERO ABBONAMENTI DOPO AVERE CARICATO SU DB DEGLI UTENTI----------------
 
         System.out.println("-----GENERAZIONE DI ABBONAMENTI DATO UN UTENTE ED UN RIVENDITORE-----------");
-
+        abbonamentiGenerator.getAbbonamento(utente1fromdb,rivenditorefromDb);
 
 
 
