@@ -51,7 +51,7 @@ public class OfficinaDAO
             em.remove(found);
             transaction.commit();
 
-            System.out.println("Riparazione con id: " + found.getId() + " rimosso!");
+            System.out.println("Riparazione con id: " + found.getId() + " rimossa!");
         } else
         {
             System.out.println("Riparazione con id: " + id + " non trovata!");

@@ -37,10 +37,10 @@ public class Mezzo
     private List<Biglietto>bigliettoList;
     public Mezzo(){}
 
-    public Mezzo(TipoMezzo tipomezzo, int capienza)
+    public Mezzo(TipoMezzo tipomezzo)
     {
         this.tipomezzo = tipomezzo;
-        this.capienza = capienza;
+        this.capienza = setCapienza();
         this.statomezzo = StatoMezzo.ATTIVO;
         this.inizioattivita=LocalDate.now();
     }
@@ -64,9 +64,13 @@ public class Mezzo
         return capienza;
     }
 
-    public void setCapienza(int capienza)
+    public int setCapienza()
     {
-        this.capienza = capienza;
+        if(this.tipomezzo.equals(TipoMezzo.BUS)){
+            return this.capienza = 40;
+        }else {
+            return this.capienza = 200;
+        }
     }
 
     public StatoMezzo getStatomezzo()
