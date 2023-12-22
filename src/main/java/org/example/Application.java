@@ -117,6 +117,9 @@ public class Application
 
         bd.bigliettiTimbratiSuUnMezzo(bus);
 
+        System.out.println("Biglietti timbrati in totale");
+        bd.bigliettiTimbratiInTotale();
+
 
         //9-----------------------------PERCORRERE TRATTA-----------------------------------
 

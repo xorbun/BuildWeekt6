@@ -101,4 +101,11 @@ public class BigliettoDAO {
         tickets.getResultList().forEach(System.out::println);
     }
 
+
+    public void bigliettiTimbratiInTotale() {
+        TypedQuery<Biglietto> tickets = em.createNamedQuery("cerca_biglietti_timbrati_in totale", Biglietto.class);
+        tickets.getResultList().forEach(System.out::println);
+    }
+
+
 }
