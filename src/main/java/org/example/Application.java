@@ -10,9 +10,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.time.LocalDate;
 
-public class Application
-{
-    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("Atac");
+public class Application {
+        private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("Atac");
 
     public static void main(String[] args) {
         //  ****************************************DAO****************************************
@@ -52,6 +51,7 @@ public class Application
         Mezzo bus = md.findById(26);
         Mezzo tram = md.findById(36);
 
+                // ud.generaTessera(utente1fromdb);
 
         // 1 ----------------GENERO BIGLIETTI DOPO AVERE CARICATO SU DB DEI RIVENDITORI----------------
 
@@ -59,6 +59,8 @@ public class Application
         //ticketgenerator.getbiglietti(16);
         Biglietto bigliettofromDB= bd.findById(47);
 
+                // RICERCA BIGLIETTI TIMBRATI SU UN MEZZO IN PARTICOLARE:
+                // System.out.println(busfromdb.getBigliettoList().size());
 
         // 2 ----------------GENERO ABBONAMENTI DOPO AVERE CARICATO SU DB DEGLI UTENTI----------------
 
