@@ -39,8 +39,8 @@ public class TrattapermezzoDAO
     public void findByIdAndDelete(long id)
     {
         Trattapermezzo found = this.findById(id);
-
-        if (found != null) {
+        if (found != null)
+        {
             EntityTransaction transaction = em.getTransaction();
             transaction.begin();
             em.remove(found);
@@ -53,7 +53,8 @@ public class TrattapermezzoDAO
     public void counterpercorrenze(Mezzo m, Tratta t)
     {
 
-        if(m!= null && t!= null) {
+        if(m!= null && t!= null)
+        {
                 long tid=t.getId();
                 long mid=m.getId();
                 TypedQuery<Trattapermezzo> trattapermezzoTypedQuery = em.createNamedQuery("conta_percorrenze", Trattapermezzo.class);
@@ -62,8 +63,9 @@ public class TrattapermezzoDAO
                 System.out.println("La tratta con id " + tid +
                         " è stata percorsa per " + trattapermezzoTypedQuery.getResultList().size() +
                         " volte dal mezzo con id " + mid);
-            }
-        else {
+        }
+        else
+        {
             if (t==null)
             {
                 System.out.println("nessuna tratta trovata");
@@ -76,13 +78,11 @@ public class TrattapermezzoDAO
 
     }
 
-    public void counterTempiPercorrenza(){
-
+    public void counterTempiPercorrenza()
+    {
         TypedQuery<Trattapermezzo> trattapermezzo = em.createNamedQuery("conta_tempo_percorrenza", Trattapermezzo.class);
         Map<Double, List<Trattapermezzo>> trattapermezzo2= trattapermezzo.getResultList().stream().collect(Collectors.groupingBy(tpm->tpm.getTempoeffperc()));
         trattapermezzo2.forEach((tempo,lista)-> System.out.println("Tempo effettivo: " + tempo +lista));
-
-
     }
 
 

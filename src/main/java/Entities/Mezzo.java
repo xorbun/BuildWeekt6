@@ -22,6 +22,7 @@ public class Mezzo
     private StatoMezzo statomezzo;
 
 
+    
     @Column(name="inizio_attività")
     @Nullable
     private LocalDate inizioattivita;

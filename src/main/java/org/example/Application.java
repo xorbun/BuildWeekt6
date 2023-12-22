@@ -18,10 +18,9 @@ public class Application
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("Atac");
 
     public static void main(String[] args)
-
     {
 
-        //  ****************************************DAO****************************************
+        //****************************************DAO****************************************
         EntityManager em = emf.createEntityManager();
         AbbonamentoDAO ad = new AbbonamentoDAO(em);
         UtenteDAO ud = new UtenteDAO(em);
@@ -59,7 +58,7 @@ public class Application
         //Trattapermezzo trattapm1=new Trattapermezzo(tdfromdb,busfromdb);
         //ttd.percorritratta(trattapm1);
 
-       //****************************************METODI****************************************
+        //****************************************METODI****************************************
 
         //ttd.counterpercorrenze(busfromdb,tdfromdb);
         //userGenerator.getUsers();
@@ -69,15 +68,15 @@ public class Application
         //Aldettaglio negozio1 = new Aldettaglio("Roma","Tabacchi");
 
 
-     // Mezzo bus = new Mezzo(TipoMezzo.BUS,40);
-       //Mezzo bus2 = new Mezzo(TipoMezzo.BUS,40);
-//        md.save(bus2);
-//        md.save(bus);
+        //Mezzo bus = new Mezzo(TipoMezzo.BUS,40);
+        //Mezzo bus2 = new Mezzo(TipoMezzo.BUS,40);
+        //md.save(bus2);
+        //md.save(bus);
 
-      //Tratta milanoNapoli = new Tratta("Milano","Napoli");
-       //Tratta napoliBologna = new Tratta("Napoli","Bologna");
-//       td.save(milanoNapoli);
-//       td.save(napoliBologna);
+        //Tratta milanoNapoli = new Tratta("Milano","Napoli");
+        //Tratta napoliBologna = new Tratta("Napoli","Bologna");
+        //td.save(milanoNapoli);
+        //td.save(napoliBologna);
 
         // Mezzo bus1fromdb = md.findById(21);
         //Mezzo bus2fromdb = md.findById(22);
@@ -89,14 +88,14 @@ public class Application
 
         //ttd.percorritratta(trattauno);
 
-       // ttd.counterpercorrenze(bus1fromdb,tratta1fromdb);
+        // ttd.counterpercorrenze(bus1fromdb,tratta1fromdb);
 
         //ttd.counterTempiPercorrenza();
 
 
 
         // Biglietto bigliettoFromDb = bd.findById(64);
-       // Biglietto biglietto2FromDb = bd.findById(65);
+        // Biglietto biglietto2FromDb = bd.findById(65);
 
 
         //bd.timbraticket(busfromdb,biglietto2FromDb);
@@ -104,15 +103,10 @@ public class Application
 
 
         //RICERCA BIGLIETTI TIMBRATI SU UN MEZZO IN PARTICOLARE:
-       //System.out.println(busfromdb.getBigliettoList().size());
+        //System.out.println(busfromdb.getBigliettoList().size());
 
 
         //RICERCA BIGLIETTI TIMBRATI PER ANNO:
-       // md.cercaBigliettiTimbratiPerAnno(busfromdb,2023);
-
-
-
-
-
+        // md.cercaBigliettiTimbratiPerAnno(busfromdb,2023);
     }
 }
