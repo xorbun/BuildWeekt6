@@ -37,12 +37,12 @@ public class Application {
                 MezzoGenerator mezzoGenerator = new MezzoGenerator();
 
                 // ****************************************METODI****************************************
-                // userGenerator.getUsers();
+                 userGenerator.getUsers();
                 // negoziGenerator.negozio();
                 // mezzoGenerator.generaMezzi();
 
-                Rivenditore negozio = rd.findById(17);
-                Utente utente1fromdb = ud.findById(46);
+//                Rivenditore negozio = rd.findById(17);
+//                Utente utente1fromdb = ud.findById(46);
 
                 // ticketgenerator.getbiglietti(17);
 
@@ -64,9 +64,9 @@ public class Application {
 
 //                Utente user1 = new Utente("bob", "marley", "124", LocalDate.now());
 //                ud.save(user1);
-                UserGenerator user = new UserGenerator();
+//                UserGenerator user = new UserGenerator();
 //                user.getUsers();
 //                ud.findById(5);
-                ud.generaTessera(ud.findById(5));
+//                ud.generaTessera(ud.findById(5));
         }
 }
