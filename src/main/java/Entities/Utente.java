@@ -1,12 +1,16 @@
 package Entities;
 
 import com.sun.istack.Nullable;
+import org.hibernate.annotations.LazyToOne;
+import org.hibernate.annotations.LazyToOneOption;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
 @Table
+@NamedQuery(name = "Utente.findNumeroTessera", query = "SELECT u.numerotessera FROM Utente u WHERE u.numerotessera = :num")
 public class Utente
 {
     @Id
@@ -17,7 +21,7 @@ public class Utente
 
     @Column(name="numero_tessera")
     @Nullable
-    private Long numerotessera;
+    private String numerotessera;
     @Column(name="data_emissione")
     @Nullable
     private LocalDate emissionetessera;
@@ -25,7 +29,11 @@ public class Utente
     @Nullable
     private LocalDate scadenza;
 
-
+    // N+1 query problem resolved
+    @OneToOne(mappedBy = "utente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @LazyToOne(LazyToOneOption.NO_PROXY)
+    @JoinColumn(name = "abbonamento_id")
+    private Abbonamento abbonamento;
 
     public Utente(){}
 
@@ -33,19 +41,29 @@ public class Utente
         return id;
     }
 
+
+
     public void rinnovaTessera () {
         this.emissionetessera = LocalDate.now();
         this.scadenza = setScadenza();
     }
 
 
-    public Utente(String nome, String cognome, Long numerotessera, LocalDate emissionetessera)
+    public Utente(String nome, String cognome, String numerotessera, LocalDate emissionetessera)
     {
         this.nome = nome;
         this.cognome = cognome;
         this.numerotessera = numerotessera;
         this.emissionetessera=emissionetessera;
         this.scadenza=setScadenza();
+    }
+
+    public Abbonamento getAbbonamento() {
+        return abbonamento;
+    }
+
+    public void setAbbonamento(Abbonamento abbonamento) {
+        this.abbonamento = abbonamento;
     }
 
     public String getNome()
@@ -68,12 +86,12 @@ public class Utente
         this.cognome = cognome;
     }
 
-    public Long getNumerotessera()
+    public String getNumerotessera()
     {
         return numerotessera;
     }
 
-    public void setNumerotessera(Long numerotessera)
+    public void setNumerotessera(String numerotessera)
     {
         this.numerotessera = numerotessera;
     }

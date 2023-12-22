@@ -17,7 +17,7 @@ public class AbbonamentoDAO {
     public AbbonamentoDAO(EntityManager em) {
         this.em = em;
     }
-   
+
 
 
     public void save(Abbonamento abbonamento, Utente utente) {
@@ -63,13 +63,13 @@ public class AbbonamentoDAO {
     public void abbonamentiPerAnno(int year) {
 
 
-            TypedQuery<Abbonamento> abbs = em.createNamedQuery("cerca_abbonamenti_per_anno",Abbonamento.class);
-            abbs.setParameter("year",year);
-                    if(abbs.getResultList().size() > 0) {
-                        abbs.getResultList().forEach(System.out::println);
-                    }else {
-                        System.out.println("Nessun abbonamento trovato per l'anno " + year);
-                    }
+        TypedQuery<Abbonamento> abbs = em.createNamedQuery("cerca_abbonamenti_per_anno",Abbonamento.class);
+        abbs.setParameter("year",year);
+        if(abbs.getResultList().size() > 0) {
+            abbs.getResultList().forEach(System.out::println);
+        }else {
+            System.out.println("Nessun abbonamento trovato per l'anno " + year);
+        }
 
     }
 
@@ -143,13 +143,13 @@ public class AbbonamentoDAO {
                     System.out.println("comando non riconosciuto");
                 }
             }
-        input.close();
+            input.close();
         }
         else
         {
             System.out.println("abbonamento valido fino al "+ a.getScadenza());
         }
     }
-    
+
 
 }
