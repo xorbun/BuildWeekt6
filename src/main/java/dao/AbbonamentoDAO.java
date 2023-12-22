@@ -3,15 +3,11 @@ package dao;
 import Entities.*;
 import org.hibernate.TransientPropertyValueException;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.NamedQuery;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
-
 
 public class AbbonamentoDAO {
 
@@ -34,6 +30,18 @@ public class AbbonamentoDAO {
         return em.find(Abbonamento.class, id);
     }
 
+    public Abbonamento findByUserId(long userId) {
+        TypedQuery<Abbonamento> query = em.createQuery(
+                "SELECT a FROM Abbonamento a WHERE a.utente.id = :userId", Abbonamento.class);
+        query.setParameter("userId", userId);
+
+        try {
+            return query.getSingleResult();
+        } catch (NoResultException | NonUniqueResultException e) {
+            return null;
+        }
+    }
+
     public void findByIdAndDelete(long id) {
         Abbonamento found = this.findById(id);
 
@@ -50,93 +58,80 @@ public class AbbonamentoDAO {
 
     public void abbonamentiPerAnno(int year) {
 
-
-            TypedQuery<Abbonamento> abbs = em.createNamedQuery("cerca_abbonamenti_per_anno",Abbonamento.class);
-            abbs.setParameter("year",year);
-                    if(abbs.getResultList().size() > 0) {
-                        abbs.getResultList().forEach(System.out::println);
-                    }else {
-                        System.out.println("Nessun abbonamento trovato per l'anno " + year);
-                    }
+        TypedQuery<Abbonamento> abbs = em.createNamedQuery("cerca_abbonamenti_per_anno", Abbonamento.class);
+        abbs.setParameter("year", year);
+        if (abbs.getResultList().size() > 0) {
+            abbs.getResultList().forEach(System.out::println);
+        } else {
+            System.out.println("Nessun abbonamento trovato per l'anno " + year);
+        }
 
     }
 
-    public void abbonamentiPerNegozio(long id)
-    {
-
-
-        TypedQuery<Abbonamento> abbs = em.createNamedQuery("cerca_abbonamenti_per_negozio",Abbonamento.class);
-        abbs.setParameter("id",id);
-        if(abbs.getResultList().size() > 0) {
+    public void abbonamentiPerNegozio(long id) {
+        TypedQuery<Abbonamento> abbs = em.createNamedQuery("cerca_abbonamenti_per_negozio", Abbonamento.class);
+        abbs.setParameter("id", id);
+        if (abbs.getResultList().size() > 0) {
             abbs.getResultList().forEach(System.out::println);
-        }else {
+        } else {
             System.out.println("Nessun abbonamento venduto nel negozio " + id);
         }
 
     }
 
-//    public void controlloabbonamento(Abbonamento a)
-//    {
-//        EntityTransaction transaction=em.getTransaction();
-//        if(a.getScadenza().isBefore(LocalDate.now()))
-//        {
-//            System.out.println("Abbonamento scaduto in data "+ a.getScadenza()+ "vuoi rinnovare?1)si, 2)no");
-//            Scanner input=new Scanner(System.in);
-//            int menu;
-//            menu = input.nextInt();
-//
-//            try {
-//                switch (menu) {
-//                        case 1: {
-//                            System.out.println("Selezionare 1)abbonamento settimanale 2)abbonamento mensile");
-//                            int menu1;
-//                            menu1 = input.nextInt();
-//                            switch (menu1) {
-//                                case 1: {
-//                                    transaction.begin();
-//                                    a.setDataemissione(LocalDate.now());
-//                                    a.setTipologia(Tipologia.SETTIMANALE);
-//                                    a.setScadenza();
-//                                    em.merge(a);
-//                                    transaction.commit();
-//                                    System.out.println("abbonamento rinnovato fino al " + a.getScadenza());
-//                                    break;
-//                                }
-//                                case 2: {
-//                                    transaction.begin();
-//                                    a.setDataemissione(LocalDate.now());
-//                                    a.setTipologia(Tipologia.MENSILE);
-//                                    a.setScadenza();
-//                                    em.merge(a);
-//                                    transaction.commit();
-//                                    System.out.println("abbonamento rinnovato fino al " + a.getScadenza());
-//                                    break;
-//                                }
-//                                default: {
-//                                    System.out.println("comando non riconosciuto");
-//                                }
-//                            }
-//                            break;
-//                        }
-//                        case 2: {
-//                            System.out.println("abbonamento non rinnovato :(");
-//                            break;
-//                        }
-//                        default: {
-//                            System.out.println("comando non riconosciuto");
-//                        }
-//                    }
-//            } catch (InputMismatchException e) {
-//                System.err.println("input invalid! " + e);
-//            } finally {
-//                input.close();
-//            }
-//        }
-//        else
-//        {
-//            System.out.println("abbonamento valido fino al "+ a.getScadenza());
-//        }
-//    }
+    public void controlloabbonamento(Abbonamento a) {
+        EntityTransaction transaction = em.getTransaction();
+        if (a.getScadenza().isBefore(LocalDate.now())) {
+            System.out.println("Abbonamento scaduto in data " + a.getScadenza() + "vuoi rinnovare?1)si, 2)no");
+            Scanner input = new Scanner(System.in);
+            int menu;
+            menu = input.nextInt();
+            switch (menu) {
+                case 1: {
+                    System.out.println("Selezionare 1)abbonamento settimanale 2)abbonamento mensile");
+                    int menu1;
+                    menu1 = input.nextInt();
+                    switch (menu1) {
+                        case 1: {
+
+                            transaction.begin();
+                            a.setDataemissione(LocalDate.now());
+                            a.setTipologia(Tipologia.SETTIMANALE);
+                            a.setScadenza();
+                            em.merge(a);
+                            transaction.commit();
+                            System.out.println("abbonamento rinnovato fino al " + a.getScadenza());
+                            break;
+                        }
+                        case 2: {
+                            transaction.begin();
+                            a.setDataemissione(LocalDate.now());
+                            a.setTipologia(Tipologia.MENSILE);
+                            a.setScadenza();
+                            em.merge(a);
+                            transaction.commit();
+                            System.out.println("abbonamento rinnovato fino al " + a.getScadenza());
+                            break;
+                        }
+                        default: {
+                            System.out.println("comando non riconosciuto");
+                        }
+                    }
+                    break;
+                }
+                case 2: {
+                    System.out.println("abbonamento non rinnovato :(");
+                    break;
+                }
+                default: {
+                    System.out.println("comando non riconosciuto");
+                }
+            }
+            input.close();
+        } else {
+            System.out.println("abbonamento valido fino al " + a.getScadenza());
+        }
+    }
 
     // permette di aggiungere o aggiornare abbonamento
     public void aggiornaAbbonamento(Utente u, Rivenditore rivenditore) {
@@ -150,7 +145,7 @@ public class AbbonamentoDAO {
         try {
             int type = scanner.nextInt();
             Tipologia abbType;
-            if(type == 1) {
+            if (type == 1) {
                 abbType = Tipologia.SETTIMANALE;
             } else if (type == 2) {
                 abbType = Tipologia.MENSILE;
@@ -165,12 +160,12 @@ public class AbbonamentoDAO {
                 System.out.println("scadenza" + abb.getScadenza());
 
                 // is expired?
-                if(LocalDate.now().isAfter(abb.getScadenza())) {
+                if (LocalDate.now().isAfter(abb.getScadenza())) {
                     abb.setTipologia(abbType);
                     abb.setScadenza();
 
                     // check weather the user is already in the db
-                    if(!em.contains(user)) {
+                    if (!em.contains(user)) {
                         user = em.merge(user);
                     }
 
@@ -188,12 +183,12 @@ public class AbbonamentoDAO {
                     System.out.println("vuoi daverro rinnovarlo? y/n");
 
                     String update = scanner1.nextLine();
-                    if(update.equalsIgnoreCase("y")) {
+                    if (update.equalsIgnoreCase("y")) {
                         abb.setTipologia(abbType);
                         abb.setScadenza();
 
                         // check weather the user is already in the db
-                        if(!em.contains(user)) {
+                        if (!em.contains(user)) {
                             user = em.merge(user);
                         }
 

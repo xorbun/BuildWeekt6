@@ -9,6 +9,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class BigliettoDAO {
     private final EntityManager em;
@@ -92,5 +94,18 @@ public class BigliettoDAO {
         }
 
     }
+
+    public void bigliettiTimbratiSuUnMezzo(Mezzo mezzo) {
+        TypedQuery<Biglietto> tickets = em.createNamedQuery("cerca_biglietti_timbrati_su_un_mezzo", Biglietto.class);
+        tickets.setParameter("id",mezzo.getId());
+        tickets.getResultList().forEach(System.out::println);
+    }
+
+
+    public void bigliettiTimbratiInTotale() {
+        TypedQuery<Biglietto> tickets = em.createNamedQuery("cerca_biglietti_timbrati_in totale", Biglietto.class);
+        tickets.getResultList().forEach(System.out::println);
+    }
+
 
 }

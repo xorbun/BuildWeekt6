@@ -10,6 +10,8 @@ import java.util.List;
 @Table
 @NamedQuery(name = "cerca_biglietti_per_anno",query = "SELECT b FROM Biglietto b WHERE YEAR(b.dataemissione) = :year")
 @NamedQuery(name = "cerca_biglietti_per_negozio", query = "SELECT b FROM Biglietto b WHERE b.rivenditore.id= :id")
+@NamedQuery(name = "cerca_biglietti_timbrati_su_un_mezzo",query = "SELECT b FROM Biglietto b JOIN b.mezzoList m WHERE m.id = :id")
+@NamedQuery(name = "cerca_biglietti_timbrati_in totale",query = "SELECT b FROm Biglietto b WHERE b.obliterato = TRUE")
 public class Biglietto
 {
     @Id
