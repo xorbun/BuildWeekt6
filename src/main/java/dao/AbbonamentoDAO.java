@@ -5,10 +5,7 @@ import Entities.Biglietto;
 import Entities.Tipologia;
 import Entities.Utente;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.NamedQuery;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -20,7 +17,7 @@ public class AbbonamentoDAO {
     public AbbonamentoDAO(EntityManager em) {
         this.em = em;
     }
-   
+
 
 
     public void save(Abbonamento abbonamento, Utente utente) {
@@ -34,6 +31,18 @@ public class AbbonamentoDAO {
 
     public Abbonamento findById(long id) {
         return em.find(Abbonamento.class, id);
+    }
+
+    public Abbonamento findByUserId(long userId) {
+        TypedQuery<Abbonamento> query = em.createQuery(
+                "SELECT a FROM Abbonamento a WHERE a.utente.id = :userId", Abbonamento.class);
+        query.setParameter("userId", userId);
+
+        try {
+            return query.getSingleResult();
+        } catch (NoResultException | NonUniqueResultException e) {
+            return null;
+        }
     }
 
     public void findByIdAndDelete(long id) {
@@ -54,20 +63,18 @@ public class AbbonamentoDAO {
     public void abbonamentiPerAnno(int year) {
 
 
-            TypedQuery<Abbonamento> abbs = em.createNamedQuery("cerca_abbonamenti_per_anno",Abbonamento.class);
-            abbs.setParameter("year",year);
-                    if(abbs.getResultList().size() > 0) {
-                        abbs.getResultList().forEach(System.out::println);
-                    }else {
-                        System.out.println("Nessun abbonamento trovato per l'anno " + year);
-                    }
+        TypedQuery<Abbonamento> abbs = em.createNamedQuery("cerca_abbonamenti_per_anno",Abbonamento.class);
+        abbs.setParameter("year",year);
+        if(abbs.getResultList().size() > 0) {
+            abbs.getResultList().forEach(System.out::println);
+        }else {
+            System.out.println("Nessun abbonamento trovato per l'anno " + year);
+        }
 
     }
 
     public void abbonamentiPerNegozio(long id)
     {
-
-
         TypedQuery<Abbonamento> abbs = em.createNamedQuery("cerca_abbonamenti_per_negozio",Abbonamento.class);
         abbs.setParameter("id",id);
         if(abbs.getResultList().size() > 0) {
@@ -77,6 +84,7 @@ public class AbbonamentoDAO {
         }
 
     }
+
     public void controlloabbonamento(Abbonamento a)
     {
         EntityTransaction transaction=em.getTransaction();
@@ -135,13 +143,13 @@ public class AbbonamentoDAO {
                     System.out.println("comando non riconosciuto");
                 }
             }
-        input.close();
+            input.close();
         }
         else
         {
             System.out.println("abbonamento valido fino al "+ a.getScadenza());
         }
     }
-    
+
 
 }

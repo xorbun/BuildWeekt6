@@ -9,7 +9,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.time.LocalDate;
+import java.util.InputMismatchException;
 import java.util.Random;
+import java.util.Scanner;
 
 public class BigliettoGenerator {
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("Atac");
@@ -18,20 +20,25 @@ public class BigliettoGenerator {
     BigliettoDAO bd = new BigliettoDAO(em);
     RivenditoreDAO rd = new RivenditoreDAO(em);
 
-    public void getbiglietti(long id)
-    {
-        Rivenditore rivenditorefromdb = rd.findById(id);
-        if (rivenditorefromdb != null)
-        {
-            for (int i = 0; i < 2; i++)
-            {
-                Biglietto ticket = new Biglietto(LocalDate.now(), rivenditorefromdb);
-                bd.save(ticket);
-            }
-        } else
-        {
-            System.out.println("Errore, rivenditore con id: " + id + " non trovato");
-        }
+    public void getbiglietti(long idNegozio) {
+        Rivenditore rivenditorefromdb = rd.findById(idNegozio);
+        if (rivenditorefromdb != null) {
+            Scanner input = new Scanner(System.in);
+            System.out.println("Quanti biglietti vuoi generare?");
 
+            try {
+                int num = input.nextInt();
+
+                for (int i = 0; i < num; i++) {
+                    Biglietto ticket = new Biglietto(LocalDate.now(), rivenditorefromdb);
+                    bd.save(ticket);
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Errore: hai inserito un carattere non valido.");
+            }
+        } else {
+            System.out.println("Errore, rivenditore con id: " + idNegozio + " non trovato");
+        }
     }
+
 }
