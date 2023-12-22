@@ -104,7 +104,7 @@ public class UtenteDAO {
 
             String cognome = user.getCognome();
             String nome = user.getNome();
-            LocalDate date = user.getEmissionetessera();
+            LocalDate date = LocalDate.now();
             int randomDay = date.getDayOfMonth();
             int randomYear = date.getYear();
             int randomMonth = date.getDayOfMonth();

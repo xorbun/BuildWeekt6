@@ -52,10 +52,17 @@ public class UserGenerator {
                         numerotessera = String.valueOf(numTessera);
 
                     } while (ud.findByNumTessera(numerotessera) != null);
+                    Utente user = new Utente(nome, cognome, numerotessera, emissioneTessera);
+                    ud.save(user);
+                }
+                else {
+                    Utente user = new Utente(nome, cognome, null, null);
+                    ud.save(user);
                 }
 
-                Utente user = new Utente(nome, cognome, numerotessera, emissioneTessera);
-                ud.save(user);
+
+
+
             }
         }
     }

@@ -38,35 +38,35 @@ public class Application {
         System.out.println("-------GENERAZIONE UTENTI-----------");
         //userGenerator.getUsers();
 
-        Utente utente1fromdb = ud.findById(14);
-        Utente utente2fromdb = ud.findById(14);
+        Utente utente1fromdb = ud.findById(27);
+        Utente utente2fromdb = ud.findById(25);
+
+        //ud.generaTessera(utente1fromdb);
 
         System.out.println("-------GENERAZIONE RIVENDITORI-----------");
         //negoziGenerator.negozio();
-        Rivenditore rivenditorefromDb = rd.findById(16);
+        Rivenditore rivenditorefromDb = rd.findById(31);
+
 
         System.out.println("-------GENERAZIONE MEZZI-----------");
         //mezzoGenerator.generaMezzi();
 
-        Mezzo bus = md.findById(26);
-        Mezzo tram = md.findById(36);
+        Mezzo bus = md.findById(51);
+        Mezzo tram = md.findById(61);
 
-                // ud.generaTessera(utente1fromdb);
 
         // 1 ----------------GENERO BIGLIETTI DOPO AVERE CARICATO SU DB DEI RIVENDITORI----------------
 
         System.out.println("--------GENERAZIONE DI BIGLIETTI DA UN NEGOZIO O DISTRIBUTORE SPECIFICO----------");
-        //ticketgenerator.getbiglietti(16);
-        Biglietto bigliettofromDB= bd.findById(47);
+        //ticketgenerator.getbiglietti(31);
+        Biglietto bigliettofromDB= bd.findById(81);
 
-                // RICERCA BIGLIETTI TIMBRATI SU UN MEZZO IN PARTICOLARE:
-                // System.out.println(busfromdb.getBigliettoList().size());
 
         // 2 ----------------GENERO ABBONAMENTI DOPO AVERE CARICATO SU DB DEGLI UTENTI----------------
 
         System.out.println("-----GENERAZIONE DI ABBONAMENTI DATO UN UTENTE ED UN RIVENDITORE-----------");
         //abbonamentiGenerator.getAbbonamento(utente1fromdb,rivenditorefromDb);
-        Abbonamento abbonamento1fromdb = ad.findById(69);
+        Abbonamento abbonamento1fromdb = ad.findById(96);
 
 
         // 3 ----------------RINNOVO DI UNA TESSERA----------------
@@ -74,14 +74,16 @@ public class Application {
         //ud.rinnovoTessera(utente2fromdb);
 
 
+
         // 4 ----------------CERCA BIGLIETTI PER ANNO E PER PUNTO EMISSIONE----------------
         System.out.println("----------------CERCA BIGLIETTI PER ANNO E PER PUNTO EMISSIONE----------------");
 
         System.out.println("----BIGLIETTI PER ANNO-------");
-        bd.bigliettiPerAnno(2023);
+        //bd.bigliettiPerAnno(2021);
 
         System.out.println("----BIGLIETTI PER PUNTO DI EMISSIONE-------");
-        bd.bigliettiPerNegozio(16);
+        //bd.bigliettiPerNegozio(32);
+
 
 
         // 5 ----------------VERIFICA VALIDITA' ABBONAMENTO----------------
@@ -95,7 +97,7 @@ public class Application {
         //-------------------Genero una istanza di riparazione e la associo ad un mezzo-----------------
 
         Officina riparazione1 = new Officina("Sostituzione marmitta",bus);
-        Officina riparazione1FromDb = od.findById(72);
+        Officina riparazione1FromDb = od.findById(98);
 
         //----------------mando in manutenzione un mezzo------------------
 
@@ -103,11 +105,12 @@ public class Application {
 
         //-----------------finisco la manutenzione per un mezzo---------------
 
-        //od.finemanutenzione(riparazione1FromDb);
+       // od.finemanutenzione(riparazione1FromDb);
 
         //--------------ricerco storico manutenzioni per un mezzo------------------------
         System.out.println("----------STORICO MANUTENZIONI PER UN DATO MEZZO-------------");
         od.storicomanutenzioni(bus);
+
 
         //7-----------------------------VIDIMAZIONE DEI TICKET-------------------------------
         System.out.println("-----------------------------VIDIMAZIONE DEI TICKET-------------------------------");
@@ -123,6 +126,7 @@ public class Application {
         bd.bigliettiTimbratiInTotale();
 
 
+
         //9-----------------------------PERCORRERE TRATTA-----------------------------------
 
         System.out.println("-------------GENERO TRATTE E LE ASSOCIO A DEI MEZZI--------------------");
@@ -131,7 +135,7 @@ public class Application {
 
         Tratta milanoNapoli = new Tratta("Milano","Napoli");
         //td.save(milanoNapoli);
-        Tratta milanoNapoliFromdb= td.findById(74);
+        Tratta milanoNapoliFromdb= td.findById(99);
 
         //--------------genero istanza di una Tratta per mezzo---------------
 
@@ -145,6 +149,7 @@ public class Application {
 
         System.out.println("--------------CERCO I TEMPI EFFETTIVI DI OGNI CORSA PRESENTE NEL DB---------------------------");
         ttd.counterTempiPercorrenza();
+
 
     }
 
