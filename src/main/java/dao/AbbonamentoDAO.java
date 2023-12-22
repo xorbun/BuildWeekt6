@@ -5,10 +5,7 @@ import Entities.Biglietto;
 import Entities.Tipologia;
 import Entities.Utente;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.NamedQuery;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -34,6 +31,18 @@ public class AbbonamentoDAO {
 
     public Abbonamento findById(long id) {
         return em.find(Abbonamento.class, id);
+    }
+
+    public Abbonamento findByUserId(long userId) {
+        TypedQuery<Abbonamento> query = em.createQuery(
+                "SELECT a FROM Abbonamento a WHERE a.utente.id = :userId", Abbonamento.class);
+        query.setParameter("userId", userId);
+
+        try {
+            return query.getSingleResult();
+        } catch (NoResultException | NonUniqueResultException e) {
+            return null;
+        }
     }
 
     public void findByIdAndDelete(long id) {
@@ -66,8 +75,6 @@ public class AbbonamentoDAO {
 
     public void abbonamentiPerNegozio(long id)
     {
-
-
         TypedQuery<Abbonamento> abbs = em.createNamedQuery("cerca_abbonamenti_per_negozio",Abbonamento.class);
         abbs.setParameter("id",id);
         if(abbs.getResultList().size() > 0) {
@@ -77,6 +84,7 @@ public class AbbonamentoDAO {
         }
 
     }
+
     public void controlloabbonamento(Abbonamento a)
     {
         EntityTransaction transaction=em.getTransaction();

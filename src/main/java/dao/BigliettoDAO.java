@@ -9,6 +9,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class BigliettoDAO {
     private final EntityManager em;
@@ -91,6 +93,12 @@ public class BigliettoDAO {
             System.out.println("Non risulta nessun biglietto venduto nel negozio " + id);
         }
 
+    }
+
+    public void bigliettiTimbratiSuUnMezzo(Mezzo mezzo) {
+        TypedQuery<Biglietto> tickets = em.createNamedQuery("cerca_biglietti_timbrati_su_un_mezzo", Biglietto.class);
+        tickets.setParameter("id",mezzo.getId());
+        tickets.getResultList().forEach(System.out::println);
     }
 
 }

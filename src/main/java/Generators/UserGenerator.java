@@ -30,6 +30,13 @@ public class UserGenerator {
                 Utente user = new Utente(faker.name().firstName(),faker.name().lastName(),numeroTess, LocalDate.of(randomYear,randomMonth,randomDay));
                 ud.save(user);
             }
+            for (int i = 0; i < 5; i++) {
+                Faker faker = new Faker(Locale.ITALIAN);
+                Random rndm = new Random();
+
+                Utente user = new Utente(faker.name().firstName(),faker.name().lastName(),null, null);
+                ud.save(user);
+            }
 
         }
 
