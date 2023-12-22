@@ -42,6 +42,20 @@ public class AbbonamentiGenerator {
                         switch (option){
                             case 1 : {
                                 ud.generaTessera(user);
+
+                                System.out.println("Che tipo di abbonamento vuoi creare? Premi 1 per settimanale o 2 per mensile");
+                                int tipologia= input.nextInt();
+                                if(tipologia == 1) {
+
+                                    Abbonamento abb = new Abbonamento(Tipologia.SETTIMANALE,rivenditore);
+                                    System.out.println(abb + " creato!");
+                                    ad.save(abb,user);
+                                } else if (tipologia== 2) {
+                                    Abbonamento abb2 =new Abbonamento(Tipologia.MENSILE,rivenditore);
+                                    ad.save(abb2,user);
+                                    System.out.println(abb2 + " creato!");
+                                }
+
                                 break;
                             }
                             case 2: {
